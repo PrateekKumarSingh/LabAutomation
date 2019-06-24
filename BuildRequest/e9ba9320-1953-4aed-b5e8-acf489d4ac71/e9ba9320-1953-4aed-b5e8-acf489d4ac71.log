@@ -1,0 +1,171 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20190624043939
+Username: THINKPAD\Prateek
+RunAs User: THINKPAD\Prateek
+Configuration Name: 
+Machine: THINKPAD (Microsoft Windows NT 10.0.17763.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe D:\Workspace\LabAutomation\BuildRequest\e9ba9320-1953-4aed-b5e8-acf489d4ac71\e9ba9320-1953-4aed-b5e8-acf489d4ac71.ps1
+Process ID: 20352
+PSVersion: 5.1.17763.503
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.17763.503
+BuildVersion: 10.0.17763.503
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is D:\Workspace\LabAutomation\BuildRequest\e9ba9320-1953-4aed-b5e8-acf489d4ac71\e9ba9320-1953-4aed-b5e8-acf489d4ac71.log
+04:39:39|00:00:00|00:00:00.000| Initialization
+04:39:39|00:00:00|00:00:00.050| - Host operating system version: '10.0.17763'
+04:39:39|00:00:00|00:00:00.059| - Creating new lab definition with name 'demo'
+04:39:39|00:00:00|00:00:00.085| - Location of lab definition files will be 'C:\ProgramData\AutomatedLab\Labs\demo'
+04:39:44|00:00:04|00:00:04.493| - Location of LabSources folder is 'D:\LabSources'
+04:39:44|00:00:04|00:00:00.000| - Auto-adding ISO files
+04:39:44|00:00:04|00:00:00.303|   - found 5 OS images in the cache
+PS>TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+04:39:44|00:00:05|00:00:00.723|   - Added 'D:\LabSources\ISOs\17763.379.190312-0539.rs5_release_svc_refresh_SERVERESSENTIALS_OEM_x64FRE_en-us.iso'
+04:39:44|00:00:05|00:00:00.740|   - Added 'D:\LabSources\ISOs\en_windows_server_2016_x64_dvd_9718492.iso'
+04:39:44|00:00:05|00:00:00.762|   - Done
+04:39:44|00:00:05|00:00:05.328| - Path for VMs specified as 'D:\VHD\'
+04:39:46|00:00:06|00:00:00.000| - Adding Hyper-V machine definition 'dc1'         (Roles: RootDC)
+04:39:47|00:00:08|00:00:01.843|   - Done
+04:39:47|00:00:08|00:00:00.000| - Adding Hyper-V machine definition 's1'          (Roles: WebServer, FileServer)
+04:39:48|00:00:08|00:00:00.320|   - Done
+04:39:48|00:00:08|00:00:00.000| - Adding Hyper-V machine definition 's2'          (Roles: FileServer)
+04:39:48|00:00:09|00:00:00.322|   - Done
+04:39:49|00:00:09|00:00:09.905| Estimated (additional) local drive space needed for all machines: 6 GB
+04:39:49|00:00:10|00:00:10.065| Location of Hyper-V machines will be 'D:\VHD\'
+04:39:49|00:00:10|00:00:10.318| Done
+04:39:50|00:00:10|00:00:00.000| Validating lab definition
+04:39:52|00:00:13|00:00:02.631| - Could not invoke validator AutomatedLab.UnknownRoleProperties
+04:39:53|00:00:13|00:00:03.079| - Success
+
+04:39:53|00:00:13|00:00:00.000| Lab 'demo' hosted on 'HyperV' imported with 3 machines
+04:39:55|00:00:15|00:00:00.000| Creating virtual networks
+04:39:55|00:00:15|00:00:00.000| - Creating Hyper-V virtual network 'Network1'
+04:39:58|00:00:18|00:00:03.020|   - Done
+04:39:58|00:00:18|00:00:03.110| - Done
+04:39:58|00:00:18|00:00:04.509| done
+04:39:58|00:00:18|00:00:00.000| Creating base images
+04:40:00|00:00:20|00:00:02.377| - All base images were created previously
+04:40:01|00:00:22|00:00:03.678| - Done
+04:40:01|00:00:22|00:00:08.219| done
+04:40:01|00:00:22|00:00:00.001| Creating Additional Disks
+04:40:03|00:00:24|00:00:01.806| - Done
+04:40:03|00:00:24|00:00:00.000| Creating VMs
+04:40:03|00:00:24|00:00:00.266| - The hosts file has been added 6 records. Clean them up using 'Remove-Lab' or manually if needed
+04:40:04|00:00:24|00:00:00.000| - Creating HyperV machine 'dc1'
+.
+.
+.
+.
+.
+04:40:13|00:00:33|00:00:09.073|   - Done
+04:40:13|00:00:33|00:00:00.000| - Creating HyperV machine 's1'
+.
+.
+.
+.
+.
+04:40:18|00:00:38|00:00:04.926|   - Done
+04:40:18|00:00:38|00:00:00.001| - Creating HyperV machine 's2'
+.
+.
+.
+.
+.
+04:40:23|00:00:43|00:00:05.244|   - Done
+04:40:23|00:00:43|00:00:00.000| - Waiting for all machines to finish installing
+04:40:23|00:00:43|00:00:00.006|   - Done
+04:40:24|00:00:44|00:00:20.371| - Done
+04:40:24|00:00:44|00:00:00.000| Installing Root Domain Controllers
+04:40:24|00:00:44|00:00:00.017| - Machines with RootDC role to be installed: 'dc1'
+04:40:24|00:00:45|00:00:00.774| - Waiting for machines to start up
+.
+.
+.
+.
+.
+.
+04:41:28|00:01:48|00:01:04.399| - Waiting for Root Domain Controllers to complete installation of Active Directory and restart
+.
+.
+.
+.
+.
+.
+.
+done
+04:45:50|00:06:10|00:05:26.295| - Root Domain Controllers have now restarted. Waiting for Active Directory to start up
+.
+.
+PS>TerminatingError(Invoke-LabCommand): "Cannot bind argument to parameter 'ComputerName' because it is an empty array."
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+04:53:04|00:13:24|00:12:40.166| - Done
+04:53:04|00:13:24|00:00:00.000| Installing Web Servers
+04:53:04|00:13:24|00:00:00.013| - Machines to have Web Server role installed: 's1'
+04:53:04|00:13:24|00:00:00.050| - Waiting for machines to start up
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+04:57:21|00:17:41|00:04:16.694| - Waiting for Web Server role to complete installation
+.
+.
+.
+.
+.
+04:59:17|00:19:38|00:06:13.415| - Done
+04:59:17|00:19:38|00:00:00.000| Starting remaining machines
+04:59:17|00:19:38|00:00:00.005| - Waiting for machines to start up...
+.
+.
+.
+.
+.
+05:00:48|00:21:09|00:01:30.919| - Done
+PS>TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+05:00:49|00:21:09|00:00:00.000| Installing software package 'D:\LabSources\SoftwarePackages\Notepad++.exe' on machines 's1, s2'
+PS>TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+PS>TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+05:01:31|00:21:51|00:00:41.562| - Installation started in background
+PS>TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+05:01:31|00:21:51|00:00:00.000| Installing software package 'D:\LabSources\SoftwarePackages\winrar.exe' on machines 's1, s2'
+PS>TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+PS>TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+05:01:36|00:21:56|00:00:04.865| - Installation started in background
+**********************
+Windows PowerShell transcript end
+End time: 20190624050201
+**********************
