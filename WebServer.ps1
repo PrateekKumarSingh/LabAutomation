@@ -2,11 +2,11 @@ Import-Module -Name Polaris
 Add-Type -AssemblyName System.Web
 # $Url = "http://localhost:8080/"
 
-New-PolarisStaticRoute -RoutePath "css" -FolderPath .\src\css\
+New-PolarisStaticRoute -RoutePath "css" -FolderPath "./src/css"
 
 New-PolarisGetRoute -Path "/" -Scriptblock {
     $Response.SetContentType('text/html')
-    $Html = Get-Content 'src/homepage.html' -Raw
+    $Html = Get-Content 'src/home.html' -Raw
     $Response.Send($Html)
 } 
 New-PolarisPostRoute -Path "/result"  -Scriptblock {
@@ -69,8 +69,9 @@ Start-Polaris -Port 8080
 # TODO Implement build status page
 # TODO Implement Successful status page
 # TODO Implement PowerShell Script Download function
-# TODO Adding Checkpoints
-
+# TODO Build type - new \ rebuild
+# TODO post installation scripts
+# TODO OS hashtable to convert small OS name to Exact OS name
 
 # $a = "LabName=testlab&name1=sdcvdf&memory1=vfgdv&processor1=1&domain1=vfdv&os1=Windows+Server+2019+Essentials&roles1=None&ip1=fvdvdf&adminuser1=admivfdvdfvn&adminpass1=&name2=&memory2=&processor2=1&domain2=&os2=Windows+Server+2019+Essentials&roles2=None&ip2=&adminuser2=&adminpass2=&name3=&memory3=&processor3=1&domain3=&os3=Windows+Server+2019+Essentials&roles3=None&ip3=&adminuser3=&adminpass3="
 
