@@ -1,6 +1,6 @@
 Import-Module -Name Polaris
 Add-Type -AssemblyName System.Web
-# $Url = "http://localhost:8080/"
+$Url = "http://localhost:8080"
 
 New-PolarisStaticRoute -RoutePath "css" -FolderPath "./src/css"
 New-PolarisStaticRoute -RoutePath "build" -FolderPath "./BuildRequest"
@@ -65,7 +65,9 @@ New-PolarisPostRoute -Path "/result"  -Scriptblock {
     $JSON = $Obj | ConvertTo-Json
     mkdir ".\BuildRequest\$GUID"
     $JSON | Out-File $([System.IO.Path]::Combine('.\BuildRequest', $GUID,"$GUID.json"))
-    $HTML = $obj.Request | Select-Object Name, Domain, OS, Memory, Processor, IP, AdminUser, @{n='Roles';e={$_.roles -join ', '}} | ConvertTo-Html -As Table -Fragment
+    $HTML = @()
+    $HTML += $obj.Request | Select-Object Name, Domain, OS, Memory, Processor, IP, AdminUser, @{n='Roles';e={$_.roles -join ', '}} | ConvertTo-Html -As Table -Fragment
+    $HTML += "Click this URL to access the file server <a href=`"$Url/build/$GUID`">$Url/build/$GUID</a>"
     $Response.Send($HTML)
 }
 
