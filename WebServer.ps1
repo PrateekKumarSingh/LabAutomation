@@ -66,8 +66,33 @@ New-PolarisPostRoute -Path "/result"  -Scriptblock {
     mkdir ".\BuildRequest\$GUID"
     $JSON | Out-File $([System.IO.Path]::Combine('.\BuildRequest', $GUID,"$GUID.json"))
     $HTML = @()
-    $HTML += $obj.Request | Select-Object Name, Domain, OS, Memory, Processor, IP, AdminUser, @{n='Roles';e={$_.roles -join ', '}} | ConvertTo-Html -As Table -Fragment
-    $HTML += "Click this URL to access the file server <a href=`"$Url/build/$GUID`">$Url/build/$GUID</a>"
+    $HTML += @"
+    <!DOCTYPE html>
+    <html lang="en-US">
+    <head>
+        <title>Build Sheet</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/radio.css">
+    </head>
+    <body>
+    <Center>
+    <div class="alert alert-success">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
+    </div>
+"@
+
+    # $HTML += $obj.Request | Select-Object Name, Domain, OS, Memory, Processor, IP, AdminUser, @{n='Roles';e={$_.roles -join ', '}} | ConvertTo-Html -As Table -Fragment -
+    $HTML += gsv b*| select name, status, displayname | ConvertTo-Html -As Table -
+    $HTML += @"
+<br><br>
+<h4>Click this URL to access the Build information<a href=`"$Url/build/$GUID`">$Url/build/$GUID/$GUID.json</a><h4>
+</center>
+</body>
+</html>
+"@
+
     $Response.Send($HTML)
 }
 
