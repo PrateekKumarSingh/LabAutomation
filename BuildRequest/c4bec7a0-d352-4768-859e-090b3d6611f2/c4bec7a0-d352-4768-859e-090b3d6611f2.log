@@ -1,0 +1,133 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20190625090603
+Username: THINKPAD\Prateek
+RunAs User: THINKPAD\Prateek
+Configuration Name: 
+Machine: THINKPAD (Microsoft Windows NT 10.0.17763.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe D:\Workspace\LabAutomation\BuildRequest\c4bec7a0-d352-4768-859e-090b3d6611f2\c4bec7a0-d352-4768-859e-090b3d6611f2.ps1
+Process ID: 8676
+PSVersion: 5.1.17763.503
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.17763.503
+BuildVersion: 10.0.17763.503
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is D:\Workspace\LabAutomation\BuildRequest\c4bec7a0-d352-4768-859e-090b3d6611f2\c4bec7a0-d352-4768-859e-090b3d6611f2.log
+09:06:04|00:00:00|00:00:00.000| Initialization
+09:06:04|00:00:00|00:00:00.005| - Host operating system version: '10.0.17763'
+09:06:04|00:00:00|00:00:00.010| - Creating new lab definition with name 'demo'
+09:06:04|00:00:00|00:00:00.020| - Location of lab definition files will be 'C:\ProgramData\AutomatedLab\Labs\demo'
+09:06:06|00:00:02|00:00:02.742| - Location of LabSources folder is 'D:\LabSources'
+09:06:06|00:00:02|00:00:00.000| - Auto-adding ISO files
+09:06:07|00:00:02|00:00:00.203|   - found 5 OS images in the cache
+PS>TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+09:06:07|00:00:03|00:00:00.515|   - Added 'D:\LabSources\ISOs\17763.379.190312-0539.rs5_release_svc_refresh_SERVERESSENTIALS_OEM_x64FRE_en-us.iso'
+09:06:07|00:00:03|00:00:00.531|   - Added 'D:\LabSources\ISOs\en_windows_server_2016_x64_dvd_9718492.iso'
+09:06:07|00:00:03|00:00:00.531|   - Added 'D:\LabSources\ISOs\ubuntu-18.04.2-desktop-amd64.iso'
+09:06:07|00:00:03|00:00:00.546|   - Done
+09:06:07|00:00:03|00:00:03.336| - Path for VMs specified as 'D:\VHD\'
+09:06:07|00:00:03|00:00:00.000| - Adding Hyper-V machine definition 'mydc1'       (Roles: RootDC)
+09:06:09|00:00:05|00:00:01.297|   - Done
+09:06:09|00:00:05|00:00:00.000| - Adding Hyper-V machine definition 'client1'     (Roles: WebServer)
+09:06:09|00:00:05|00:00:00.250|   - Done
+09:06:09|00:00:05|00:00:00.000| - Adding Hyper-V machine definition 'client2'     (Roles: WebServer, FileServer)
+09:06:09|00:00:05|00:00:00.229|   - Done
+09:06:10|00:00:06|00:00:06.394| Estimated (additional) local drive space needed for all machines: 6 GB
+09:06:10|00:00:06|00:00:06.503| Location of Hyper-V machines will be 'D:\VHD\'
+09:06:10|00:00:06|00:00:06.569| Done
+09:06:10|00:00:06|00:00:00.000| Validating lab definition
+09:06:11|00:00:07|00:00:00.968| - Could not invoke validator AutomatedLab.UnknownRoleProperties
+09:06:12|00:00:07|00:00:01.315| - Success
+
+09:06:12|00:00:08|00:00:00.000| Lab 'demo' hosted on 'HyperV' imported with 3 machines
+09:06:13|00:00:09|00:00:00.000| Creating virtual networks
+09:06:13|00:00:09|00:00:00.000| - Creating Hyper-V virtual network 'vnet01'
+09:06:15|00:00:11|00:00:02.472|   - Done
+09:06:15|00:00:11|00:00:02.526| - Done
+09:06:15|00:00:11|00:00:03.536| done
+09:06:15|00:00:11|00:00:00.000| Creating base images
+09:06:18|00:00:14|00:00:02.555| - All base images were created previously
+09:06:19|00:00:15|00:00:03.854| - Done
+09:06:19|00:00:15|00:00:07.396| done
+09:06:19|00:00:15|00:00:00.000| Creating Additional Disks
+09:06:21|00:00:17|00:00:01.558| - Done
+09:06:21|00:00:17|00:00:00.000| Creating VMs
+09:06:21|00:00:17|00:00:00.200| - The hosts file has been added 6 records. Clean them up using 'Remove-Lab' or manually if needed
+09:06:21|00:00:17|00:00:00.000| - Creating HyperV machine 'mydc1'
+.
+.
+.
+.
+.
+09:06:27|00:00:23|00:00:06.221|   - Done
+09:06:27|00:00:23|00:00:00.000| - Creating HyperV machine 'client1'
+.
+.
+.
+.
+.
+09:06:31|00:00:27|00:00:03.786|   - Done
+09:06:31|00:00:27|00:00:00.000| - Creating HyperV machine 'client2'
+.
+.
+.
+.
+.
+09:06:35|00:00:31|00:00:03.848|   - Done
+09:06:35|00:00:31|00:00:00.000| - Waiting for all machines to finish installing
+09:06:35|00:00:31|00:00:00.004|   - Done
+09:06:35|00:00:31|00:00:14.641| - Done
+09:06:35|00:00:31|00:00:00.000| Installing Root Domain Controllers
+09:06:35|00:00:31|00:00:00.015| - Machines with RootDC role to be installed: 'mydc1'
+09:06:36|00:00:32|00:00:00.489| - Waiting for machines to start up
+.
+.
+.
+.
+.
+09:07:22|00:01:18|00:00:46.302| - Waiting for Root Domain Controllers to complete installation of Active Directory and restart
+.
+.
+.
+.
+.
+.
+.
+done
+09:11:42|00:05:38|00:05:06.342| - Root Domain Controllers have now restarted. Waiting for Active Directory to start up
+.
+.
+PS>TerminatingError(Invoke-LabCommand): "Cannot bind argument to parameter 'ComputerName' because it is an empty array."
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+09:18:58|00:12:54|00:12:22.824| - Done
+09:18:58|00:12:54|00:00:00.001| Installing Web Servers
+09:18:58|00:12:54|00:00:00.014| - Machines to have Web Server role installed: 'client1, client2'
+09:18:58|00:12:54|00:00:00.046| - Waiting for machines to start up
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.

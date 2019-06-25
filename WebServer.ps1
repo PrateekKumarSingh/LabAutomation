@@ -3,6 +3,7 @@ Add-Type -AssemblyName System.Web
 # $Url = "http://localhost:8080/"
 
 New-PolarisStaticRoute -RoutePath "css" -FolderPath "./src/css"
+New-PolarisStaticRoute -RoutePath "build" -FolderPath "./BuildRequest"
 
 New-PolarisGetRoute -Path "/" -Scriptblock {
     $Response.SetContentType('text/html')
@@ -15,7 +16,12 @@ New-PolarisPostRoute -Path "/result"  -Scriptblock {
     $Body = [System.Web.HttpUtility]::UrlDecode($Request.BodyString)
     $Userinput = $Body.split('&') 
     $LabName = $UserInput -match "Labname=" -replace "Labname=",""
+    $NetworkName = $UserInput -match "NetworkName=" -replace "NetworkName=",""
     $NetworkAddressSpace = $UserInput -match "NetworkAddressSpace=" -replace "NetworkAddressSpace=",""
+    $vEngine = $UserInput -match "vEngine=" -replace "vEngine=",""
+    $Rebuild = $UserInput -match "Rebuild=" -replace "Rebuild=",""
+    $BuildNotify = $UserInput -match "BuildNotify=" -replace "BuildNotify=",""
+    $BuildValidate = $UserInput -match "BuildValidate=" -replace "BuildValidate=",""
     $SoftwareDeployment = $UserInput -match "SoftwareDeployment=" -replace "SoftwareDeployment=",""
     $SoftwareDeployServers = $UserInput -match "SoftwareDeployServers=" -replace "SoftwareDeployServers=",""
     $Software = @{SoftwareDeployServers =  $SoftwareDeployServers;SoftwareDeployment= $SoftwareDeployment }
@@ -44,8 +50,13 @@ New-PolarisPostRoute -Path "/result"  -Scriptblock {
         TimeStamp = $([datetime]::Now.ToString('dd/MMMM/yyyy hh:mm:ss tt'))
         LabName = $LabName
         LabSources = $LabSources
+        NetworkName = $NetworkName
         NetworkAddressSpace = $NetworkAddressSpace
         Checkpoint = $Checkpoint
+        vEngine = $vEngine
+        Rebuild = $Rebuild
+        BuildNotify = $BuildNotify
+        BuildValidate = $BuildValidate
         Request = $All
         Software = $Software
     }

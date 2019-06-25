@@ -5,6 +5,7 @@
     <title>Build Sheet</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/radio.css">
 </head>
 
 <body>
@@ -12,10 +13,10 @@
         <div class="container">
             <form id="BuildForm" action="/result" method="POST">
                 <table>
-                <!-- <table style="border-style: dashed"> -->
-                        <colgroup>
-                            <col span="3" style="width:100%" >
-                          </colgroup>
+                    <!-- <table style="border-style: dashed"> -->
+                    <colgroup>
+                        <col span="3" style="width:100%">
+                    </colgroup>
                     <tr>
                         <td colspan="3" style="text-align: center; font-size: 30px">Build Request Form</td>
                     </tr>
@@ -25,9 +26,10 @@
                                 <table class="dashedBorder">
                                     <tr>
                                         <td class="table-warning dashedBorder" colspan="2"
-                                            style="text-align: center; font-size: 16px; color: black">GENERAL DETAILS</td>
+                                            style="text-align: center; font-size: 16px; color: black">GENERAL DETAILS
+                                        </td>
                                     </tr>
-                                    <tr >
+                                    <tr>
                                         <td class="table-dark">
                                             <label class="table-dark">Lab Name</label>
                                         </td>
@@ -37,11 +39,20 @@
                                     </tr>
                                     <tr>
                                         <td class="table-dark">
-                                            <label class="table-dark">Network Address Space</label>
+                                            <label class="table-dark">vNetwork Name</label>
                                         </td>
                                         <td>
-                                            <input required Name="NetworkAddressSpace" placeholder="192.168.1.1/24" type="text"
+                                            <input required Name="NetworkName" placeholder="Network01" type="text"
                                                 tabindex="1">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-dark">
+                                            <label class="table-dark">vNetwork Address Space</label>
+                                        </td>
+                                        <td>
+                                            <input required Name="NetworkAddressSpace" placeholder="192.168.1.1/24"
+                                                type="text" tabindex="1">
                                         </td>
                                     </tr>
                                     <tr>
@@ -49,7 +60,7 @@
                                             <label class="table-dark">Snapshot VMs</label>
                                         </td>
                                         <td>
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <div class="custom-control custom-radio">
                                                     <input type="radio" id="customRadio1" name="Checkpoint" value="$True"
                                                         class="custom-control-input" checked="">
@@ -60,6 +71,11 @@
                                                         class="custom-control-input">
                                                     <label class="custom-control-label" for="customRadio2">No</label>
                                                 </div>
+                                            </div> -->
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input" id="customSwitch1"
+                                                    name="Checkpoint" value="$True">
+                                                <label class="custom-control-label" for="customSwitch1"></label>
                                             </div>
                                         </td>
                                     </tr>
@@ -71,31 +87,52 @@
                                 <table class="dashedBorder">
                                     <tr>
                                         <td class="table-warning dashedBorder" colspan="2"
-                                            style="text-align: center; font-size: 16px; color: black">BUILD CONFIGURATION</td>
+                                            style="text-align: center; font-size: 16px; color: black">BUILD
+                                            CONFIGURATION</td>
                                     </tr>
                                     <tr>
                                         <td class="table-dark">
-                                            <label class="table-dark">Servers</label>
+                                            <label class="table-dark">Virtualization Engine</label>
                                         </td>
-                                        <td>
-                                            <textarea Name="SoftwareDeployServers"
-                                                placeholder="Enter server names by comma" tabindex="5" required
-                                                aria-setsize="200"></textarea>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table-dark">
-                                            <label class="table-dark">Softwares</label>
-                                        </td>
-                                        <td>
-                                            <select name="SoftwareDeployment" multiple="" class="form-control" id="exampleSelect2">
-                                            <!-- <select name="SoftwareDeployment" multiple size=3> -->
-                                                <option value="None" selected="selected">None</option>
-                                                <option value="Notepad++">Notepad++</option>
-                                                <option value="WinRAR">WinRAR</option>
+                                        <td >
+                                            <select name="vEngine" style="width: 120px">
+                                                <option value="Hyper-V">Hyper-V</option>
+                                                <option value="Azure">Azure</option>
                                             </select>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td class="table-dark">
+                                            <label class="table-dark">Re-Build</label>
+                                        </td>
+                                        <td>
+                                                <div class="custom-control custom-switch">
+                                                        <input type="checkbox" class="custom-control-input" id="customSwitch2"
+                                                            name="rebuild" value="$True">
+                                                        <label class="custom-control-label" for="customSwitch2"></label>
+                                                    </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                            <td class="table-dark">
+                                                <label class="table-dark">Build Notifications</label>
+                                            </td>
+                                            <td>
+                                                <input required Name="BuildNotify" placeholder="prateek@continuum.net" type="text" tabindex="1">
+                                            </td>
+                                        </tr>
+                                    <tr>
+                                            <td class="table-dark">
+                                                <label class="table-dark">Post build Validation</label>
+                                            </td>
+                                            <td>
+                                                    <div class="custom-control custom-switch">
+                                                            <input type="checkbox" class="custom-control-input" id="customSwitch3"
+                                                                name="BuildValidate" value="$True">
+                                                            <label class="custom-control-label" for="customSwitch3"></label>
+                                                        </div>
+                                            </td>
+                                        </tr>
                                 </table>
                             </center>
                         </td>
@@ -104,7 +141,8 @@
                                 <table class="dashedBorder">
                                     <tr>
                                         <td class="table-warning dashedBorder" colspan="2"
-                                            style="text-align: center; font-size: 16px; color: black">SOFTWARE DEPLOYMENT</td>
+                                            style="text-align: center; font-size: 16px; color: black">SOFTWARE
+                                            DEPLOYMENT</td>
                                     </tr>
                                     <tr>
                                         <td class="table-dark">
@@ -121,8 +159,9 @@
                                             <label class="table-dark">Softwares</label>
                                         </td>
                                         <td>
-                                            <select name="SoftwareDeployment" multiple="" class="form-control" id="exampleSelect2">
-                                            <!-- <select name="SoftwareDeployment" multiple size=3> -->
+                                            <select name="SoftwareDeployment" multiple="" class="form-control"
+                                                id="exampleSelect2">
+                                                <!-- <select name="SoftwareDeployment" multiple size=3> -->
                                                 <option value="None" selected="selected">None</option>
                                                 <option value="Notepad++">Notepad++</option>
                                                 <option value="WinRAR">WinRAR</option>
@@ -150,7 +189,8 @@
                                 <th class="table-dark">Admin User</th>
                                 <th class="table-dark">Admin Pass</th>
                                 <tr>
-                                    <td><input required Name="name1" placeholder="Windows01" type="text" tabindex="1"></td>
+                                    <td><input required Name="name1" placeholder="Windows01" type="text" tabindex="1">
+                                    </td>
                                     <td><input required Name="memory1" placeholder="4" type="text" tabindex="2"></td>
                                     <td>
                                         <select name="processor1">
@@ -160,21 +200,22 @@
                                             <option value="8">8</option>
                                         </select>
                                     </td>
-                                    <td><input required Name="domain1" placeholder="contoso.com" type="text" tabindex="4">
+                                    <td><input required Name="domain1" placeholder="contoso.com" type="text"
+                                            tabindex="4">
                                     </td>
                                     <td>
                                         <select name="os1">
-                                            <option value="Windows Server 2019 Essentials">Windows Server 2019 Essentials
-                                            </option>
                                             <option value="Windows Server 2016 Standard">Windows Server 2016 Standard
                                             </option>
-                                            <option value="Windows Server 2016 Datacenter">Windows Server 2016 Datacenter
+                                            <option value="Windows Server 2016 Datacenter">Windows Server 2016
+                                                Datacenter
                                             </option>
                                         </select>
                                     </td>
-                                    <td> 
+                                    <td>
                                         <!-- <select name="roles1" multiple size=3> -->
-                                                <select name="roles1" class="form-control" id="exampleSelect2" multiple style="width: 100%">
+                                        <select name="roles1" class="form-control" id="exampleSelect2" multiple
+                                            style="width: 100%">
                                             <option value="None" selected="selected">None</option>
                                             <option value="RootDC">RootDC</option>
                                             <option value="DHCP">DHCP</option>
@@ -182,15 +223,18 @@
                                             <option value="FileServer">FileServer</option>
                                         </select>
                                     </td>
-                                    <td><input required Name="ip1" placeholder="192.168.0.1" type="text" tabindex="5"></td>
+                                    <td><input required Name="ip1" placeholder="192.168.0.1" type="text" tabindex="5">
+                                    </td>
                                     <td><input required Name="adminuser1" placeholder="Administrator" type="text"
                                             tabindex="5">
                                     </td>
-                                    <td><input required Name="adminpass1" placeholder="Password" type="password" tabindex="5"></td>
+                                    <td><input required Name="adminpass1" placeholder="Password" type="password"
+                                            tabindex="5"></td>
                                 </tr>
-    
+
                                 <tr>
-                                    <td><input required Name="name2" placeholder="Windows02" type="text" tabindex="1"></td>
+                                    <td><input required Name="name2" placeholder="Windows02" type="text" tabindex="1">
+                                    </td>
                                     <td><input required Name="memory2" placeholder="4" type="text" tabindex="2"></td>
                                     <td>
                                         <select name="processor2">
@@ -200,21 +244,22 @@
                                             <option value="8">8</option>
                                         </select>
                                     </td>
-                                    <td><input required Name="domain2" placeholder="contoso.com" type="text" tabindex="4">
+                                    <td><input required Name="domain2" placeholder="contoso.com" type="text"
+                                            tabindex="4">
                                     </td>
                                     <td>
                                         <select name="os2">
-                                            <option value="Windows Server 2019 Essentials">Windows Server 2019 Essentials
-                                            </option>
                                             <option value="Windows Server 2016 Standard">Windows Server 2016 Standard
                                             </option>
-                                            <option value="Windows Server 2016 Datacenter">Windows Server 2016 Datacenter
+                                            <option value="Windows Server 2016 Datacenter">Windows Server 2016
+                                                Datacenter
                                             </option>
                                         </select>
                                     </td>
                                     <td>
                                         <!-- <select name="roles2" multiple size=3> -->
-                                                <select name="roles2" class="form-control" id="exampleSelect2" multiple style="width: 100%">
+                                        <select name="roles2" class="form-control" id="exampleSelect2" multiple
+                                            style="width: 100%">
                                             <option value="None" selected="selected">None</option>
                                             <option value="RootDC">RootDC</option>
                                             <option value="DHCP">DHCP</option>
@@ -222,15 +267,18 @@
                                             <option value="FileServer">FileServer</option>
                                         </select>
                                     </td>
-                                    <td><input required Name="ip2" placeholder="192.168.0.1" type="text" tabindex="5"></td>
+                                    <td><input required Name="ip2" placeholder="192.168.0.1" type="text" tabindex="5">
+                                    </td>
                                     <td><input required Name="adminuser2" placeholder="Administrator" type="text"
                                             tabindex="5">
                                     </td>
-                                    <td><input required Name="adminpass2" placeholder="Password" type="password" tabindex="5"></td>
+                                    <td><input required Name="adminpass2" placeholder="Password" type="password"
+                                            tabindex="5"></td>
                                 </tr>
-    
+
                                 <tr>
-                                    <td><input required Name="name3" placeholder="Windows03" type="text" tabindex="1"></td>
+                                    <td><input required Name="name3" placeholder="Windows03" type="text" tabindex="1">
+                                    </td>
                                     <td><input required Name="memory3" placeholder="4" type="text" tabindex="2"></td>
                                     <td>
                                         <select name="processor3">
@@ -240,21 +288,22 @@
                                             <option value="8">8</option>
                                         </select>
                                     </td>
-                                    <td><input required Name="domain3" placeholder="contoso.com" type="text" tabindex="4">
+                                    <td><input required Name="domain3" placeholder="contoso.com" type="text"
+                                            tabindex="4">
                                     </td>
                                     <td>
                                         <select name="os3">
-                                            <option value="Windows Server 2019 Essentials">Windows Server 2019 Essentials
-                                            </option>
                                             <option value="Windows Server 2016 Standard">Windows Server 2016 Standard
                                             </option>
-                                            <option value="Windows Server 2016 Datacenter">Windows Server 2016 Datacenter
+                                            <option value="Windows Server 2016 Datacenter">Windows Server 2016
+                                                Datacenter
                                             </option>
                                         </select>
                                     </td>
                                     <td>
-                                            <select name="roles3" class="form-control" id="exampleSelect2" multiple style="width: 100%">
-                                        <!-- <select name="roles3" multiple size=3> -->
+                                        <select name="roles3" class="form-control" id="exampleSelect2" multiple
+                                            style="width: 100%">
+                                            <!-- <select name="roles3" multiple size=3> -->
                                             <option value="None" selected="selected">None</option>
                                             <option value="RootDC">RootDC</option>
                                             <option value="DHCP">DHCP</option>
@@ -262,20 +311,24 @@
                                             <option value="FileServer">FileServer</option>
                                         </select>
                                     </td>
-                                    <td><input required Name="ip3" placeholder="192.168.0.1" type="text" tabindex="5"></td>
+                                    <td><input required Name="ip3" placeholder="192.168.0.1" type="text" tabindex="5">
+                                    </td>
                                     <td><input required Name="adminuser3" placeholder="Administrator" type="text"
                                             tabindex="5">
                                     </td>
-                                    <td><input required Name="adminpass3" placeholder="Password" type="password" tabindex="5"></td>
+                                    <td><input required Name="adminpass3" placeholder="Password" type="password"
+                                            tabindex="5"></td>
                                 </tr>
-    
+
                             </table>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="3">
                             <center><button type="submit" id="contact-submit" data-submit="...Sending"
-                                class="btn btn-warning btn-lg" style="color: black;border:solid; font-weight: bold; font-size: 16px">SUBMIT</button></center>
+                                    class="btn btn-warning btn-lg"
+                                    style="color: black;border:solid; font-weight: bold; font-size: 16px">SUBMIT</button>
+                            </center>
                         </td>
                     </tr>
                 </table>
