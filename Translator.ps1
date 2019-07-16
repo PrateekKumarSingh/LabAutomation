@@ -19,11 +19,12 @@ While ($true) {
         Write-Host ""
         Write-Host ("`n[+] {0} new build request(s) found." -f $Files.count) -ForegroundColor Magenta
         Foreach ($File in $Files) {
-            
             Add-Content .\BuildRequest\Processed.txt -Value $File.BaseName
             Write-Host "`n[+] Processing Build Request [$($File.BaseName)]" -ForegroundColor Green
             $BuildRequest = Get-Content $File.fullname | ConvertFrom-Json
+            $BuildScript += "Start-Transcript -Path `"$($File.FullName -replace 'json','log')`""
             $BuildScript += "Import-Module AutomatedLab"
+            # $BuildScript += "Add-LabDomainDefinition -Name vm.net -AdminUser Install -AdminPassword Somepass1"
             
             if($BuildRequest.Rebuild){
                 Write-Host "   [-] Removing and rebuilding lab: $($BuildRequest.Labname)" -ForegroundColor Red
@@ -33,7 +34,6 @@ While ($true) {
                 $BuildScript += "}"
             }
 
-            $BuildScript += "Start-Transcript -Path `"$($File.FullName -replace 'json','log')`""
             $BuildScript += "New-LabDefinition -Name $($BuildRequest.Labname) -DefaultVirtualizationEngine HyperV  -VmPath D:\VHD\"
             
             Write-Host "   [+] Add lab virtual network definition [$($BuildRequest.NetworkAddressSpace)]" -ForegroundColor Green               

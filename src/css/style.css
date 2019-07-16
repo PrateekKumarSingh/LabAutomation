@@ -7,11 +7,11 @@ body {
 }
 
 .li {display:inline}
-.container {
+.mycontainer {
     /* min-width: 1200px; */
-    /* width: 100%; */
+    /* width: 0%; */
     /* margin: 0 auto; */
-    /* position: relative; */
+    /* position: center; */
 }
 
 .BlueBG {
@@ -34,12 +34,19 @@ body {
     color: black
 }
 
+
+
 #BuildForm {
     background: rgb(255, 255, 255);
     padding: 5px;
-    margin: 10px 0;
+    margin: 20px 0;
+    margin-left: 0px;
     box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.2), 0 20px 20px 0 rgba(0, 0, 0, 0.24);
-    color: black
+    color: black;
+    height: 90%;
+    width: 1300px;
+    align:"center"
+
 }
 
 input,
@@ -58,8 +65,8 @@ label {
 
 label {
     width: 180px;
-    /* border-style: solid;
-    border-color: white */
+    /* border-style: solid; */
+    border-color: white
 }
 
 input {
@@ -83,16 +90,20 @@ td {
     /* min-width: 100px; */
     padding: 5px;
     /* border-style: dashed; */
-    width: 100%
+    width: 90%;
+    align-content: center
 }    
 
 table{
     padding: 5px;
+    /* height: 90%; */
     align-content: center
 }
 
 th {
     font-size: 15px;
+    /* font-weight: bolder; */
+    /* font-family: Arial; */
     text-align: center
 }
 
@@ -110,4 +121,12 @@ h4 {
     font-weight: 100;
     text-align: center;
     color: black
+}
+
+.longtextbox {
+    width: 200px;
+}
+
+textarea {
+    height: 37px;
 }

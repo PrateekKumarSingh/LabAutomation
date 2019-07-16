@@ -1,5 +1,6 @@
 Import-Module Gridify
 $Process = @()
-$Process += Start-Process powershell.exe -ArgumentList "$PSScriptRoot\WebServer.ps1"
-$Process += Start-Process PowerShell.exe -ArgumentList "$PSScriptRoot\Translator.ps1"
-Set-GridLayout -Process $Process -Layout Vertical
+$Process += Start-Process powershell.exe -PassThru
+$Process += Start-Process PowerShell.exe -PassThru
+sleep -Seconds 2
+Set-GridLayout -Process $Process -Layout Vertical -Verbose

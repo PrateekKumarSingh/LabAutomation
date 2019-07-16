@@ -7,21 +7,28 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/radio.css">
 </head>
-
 <body>
+        <br>
+        <ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="http://localhost:8080">Home</a></li>
+  <li class="breadcrumb-item active"><a href="http://localhost:8080/build/">Build File Server</a></li>
+</ol>
     <center>
-        <div class="container">
-            <form id="BuildForm" action="/result" method="POST">
+        <div id="BuildForm" >
+        <!-- <div> -->
+            <!-- <form id="BuildForm" action="/result" method="POST"> -->
+                <center>
+            <form class="mycontainer" action="/result" method="POST">
                 <table>
                     <!-- <table style="border-style: dashed"> -->
-                    <colgroup>
+                    <!-- <colgroup>
                         <col span="3" style="width:100%">
-                    </colgroup>
+                    </colgroup> -->
                     <tr>
                         <td colspan="3" style="text-align: center; font-size: 30px">Build Request Form</td>
                     </tr>
-                    <tr colspan="3">
-                        <td>
+                    <tr>
+                        <td colspan="1">
                             <center>
                                 <table class="dashedBorder">
                                     <tr>
@@ -34,7 +41,7 @@
                                             <label class="table-dark">Lab Name</label>
                                         </td>
                                         <td>
-                                            <input required Name="LabName" placeholder="myLab" type="text" tabindex="1">
+                                            <input style="width: 200px" required Name="LabName" placeholder="myLab" type="text" tabindex="1">
                                         </td>
                                     </tr>
                                     <tr>
@@ -42,7 +49,7 @@
                                             <label class="table-dark">vNetwork Name</label>
                                         </td>
                                         <td>
-                                            <input required Name="NetworkName" placeholder="Network01" type="text"
+                                            <input style="width: 200px" required Name="NetworkName" placeholder="Network01" type="text"
                                                 tabindex="1">
                                         </td>
                                     </tr>
@@ -51,7 +58,7 @@
                                             <label class="table-dark">vNetwork Address Space</label>
                                         </td>
                                         <td>
-                                            <input required Name="NetworkAddressSpace" placeholder="192.168.1.1/24"
+                                            <input style="width: 200px" required Name="NetworkAddressSpace" placeholder="192.168.1.1/24"
                                                 type="text" tabindex="1">
                                         </td>
                                     </tr>
@@ -82,7 +89,7 @@
                                 </table>
                             </center>
                         </td>
-                        <td>
+                        <td colspan="1">
                             <center>
                                 <table class="dashedBorder">
                                     <tr>
@@ -94,8 +101,8 @@
                                         <td class="table-dark">
                                             <label class="table-dark">Virtualization Engine</label>
                                         </td>
-                                        <td >
-                                            <select name="vEngine" style="width: 120px">
+                                        <td>
+                                            <select style="width: 200px" name="vEngine" style="width: 120px">
                                                 <option value="Hyper-V">Hyper-V</option>
                                                 <option value="Azure">Azure</option>
                                             </select>
@@ -106,38 +113,39 @@
                                             <label class="table-dark">Re-Build</label>
                                         </td>
                                         <td>
-                                                <div class="custom-control custom-switch">
-                                                        <input type="checkbox" class="custom-control-input" id="customSwitch2"
-                                                            name="rebuild" value="$True">
-                                                        <label class="custom-control-label" for="customSwitch2"></label>
-                                                    </div>
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input" id="customSwitch2"
+                                                    name="rebuild" value="$True">
+                                                <label class="custom-control-label" for="customSwitch2"></label>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
-                                            <td class="table-dark">
-                                                <label class="table-dark">Build Notifications</label>
-                                            </td>
-                                            <td>
-                                                <input required Name="BuildNotify" placeholder="prateek@continuum.net" type="text" tabindex="1">
-                                            </td>
-                                        </tr>
+                                        <td class="table-dark">
+                                            <label class="table-dark">Build Notifications</label>
+                                        </td>
+                                        <td>
+                                            <input style="width: 200px" required Name="BuildNotify" placeholder="prateek@continuum.net"
+                                                type="text" tabindex="1">
+                                        </td>
+                                    </tr>
                                     <tr>
-                                            <td class="table-dark">
-                                                <label class="table-dark">Post build Validation</label>
-                                            </td>
-                                            <td>
-                                                    <div class="custom-control custom-switch">
-                                                            <input type="checkbox" class="custom-control-input" id="customSwitch3"
-                                                                name="BuildValidate" value="$True">
-                                                            <label class="custom-control-label" for="customSwitch3"></label>
-                                                        </div>
-                                            </td>
-                                        </tr>
+                                        <td class="table-dark">
+                                            <label class="table-dark">Post build Validation</label>
+                                        </td>
+                                        <td>
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input" id="customSwitch3"
+                                                    name="BuildValidate" value="$True">
+                                                <label class="custom-control-label" for="customSwitch3"></label>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </table>
                             </center>
                         </td>
-                        <td>
-                            <center>
+                        <td colspan="1">
+
                                 <table class="dashedBorder">
                                     <tr>
                                         <td class="table-warning dashedBorder" colspan="2"
@@ -149,7 +157,7 @@
                                             <label class="table-dark">Servers</label>
                                         </td>
                                         <td>
-                                            <textarea Name="SoftwareDeployServers"
+                                            <textarea style="width: 195px" Name="SoftwareDeployServers"
                                                 placeholder="Enter server names by comma" tabindex="5" required
                                                 aria-setsize="200"></textarea>
                                         </td>
@@ -169,7 +177,7 @@
                                         </td>
                                     </tr>
                                 </table>
-                            </center>
+                            
                         </td>
                     </tr>
                     <tr>
@@ -189,7 +197,7 @@
                                 <th class="table-dark">Admin User</th>
                                 <th class="table-dark">Admin Pass</th>
                                 <tr>
-                                    <td><input required Name="name1" placeholder="Windows01" type="text" tabindex="1">
+                                    <td><input style="width: 265px" required Name="name1" placeholder="Windows01" type="text" tabindex="1">
                                     </td>
                                     <td><input required Name="memory1" placeholder="4" type="text" tabindex="2"></td>
                                     <td>
@@ -233,7 +241,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td><input required Name="name2" placeholder="Windows02" type="text" tabindex="1">
+                                    <td><input style="width: 265px" required Name="name2" placeholder="Windows02" type="text" tabindex="1">
                                     </td>
                                     <td><input required Name="memory2" placeholder="4" type="text" tabindex="2"></td>
                                     <td>
@@ -277,7 +285,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td><input required Name="name3" placeholder="Windows03" type="text" tabindex="1">
+                                    <td><input style="width: 265px" required Name="name3" placeholder="Windows03" type="text" tabindex="1">
                                     </td>
                                     <td><input required Name="memory3" placeholder="4" type="text" tabindex="2"></td>
                                     <td>
@@ -333,6 +341,7 @@
                     </tr>
                 </table>
             </form>
+        </center>
         </div>
     </center>
 </body>
