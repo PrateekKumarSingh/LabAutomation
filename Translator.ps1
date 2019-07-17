@@ -19,9 +19,14 @@ While ($true) {
         Write-Host ""
         Write-Host ("`n[+] {0} new build request(s) found." -f $Files.count) -ForegroundColor Magenta
         Foreach ($File in $Files) {
+            $StatusFile = Join-Path $file.PSParentPath 'status.txt'
+            'InProgress' | Out-File $StatusFile -Verbose
             Add-Content .\BuildRequest\Processed.txt -Value $File.BaseName
             Write-Host "`n[+] Processing Build Request [$($File.BaseName)]" -ForegroundColor Green
             $BuildRequest = Get-Content $File.fullname | ConvertFrom-Json
+            $BuildScript += "`$ErrorActionPreference = 'Stop'"
+            $BuildScript += "try{"
+            $BuildScript += "`$Completed=`$false"
             $BuildScript += "Start-Transcript -Path `"$($File.FullName -replace 'json','log')`""
             $BuildScript += "Import-Module AutomatedLab"
             
@@ -41,7 +46,7 @@ While ($true) {
             Foreach ($Item in $BuildRequest.Request) {
                 Write-Host "   [+] Adding lab machine defination for $($Item.Name)" -ForegroundColor Green
                 $BuildScript += "`$installationCredential = New-Object PSCredential(`"$($Item.adminuser)`", (`"$($Item.adminpass)`" | ConvertTo-SecureString -AsPlainText -Force))"
-                
+                 
                 if ($Item.Roles -like "*RootDC*") {
                     #$BuildScript += "Add-LabDomainDefinition -Name {0} -AdminUser {1} -AdminPassword {2}" -f $Item.Domain, $Item.adminuser, $Item.adminpass
                     #$BuildScript += "Set-LabInstallationCredential -User {0} -Password {1}" -f  $Item.adminuser, $Item.adminpass
@@ -63,11 +68,23 @@ While ($true) {
                 }
                 $BuildScript += "Get-Job -Name 'Installation of*' | Wait-Job | Out-Null"
             }
+
+            $BuildScript += "Show-LabDeploymentSummary -Detailed"
             
+            # take snapshots of the virtual machines
             if ($BuildRequest.Checkpoint) {
                 $BuildScript += "Checkpoint-LabVM -All -SnapshotName 1"
                 Write-Host "   [+] Adding snapshot creation" -ForegroundColor Green
             }
+   
+            $BuildScript += "`$Completed=`$true;'Completed'|Out-File $StatusFile"
+            $BuildScript += "}"
+            $BuildScript += "catch{"
+            $BuildScript += "`$_.Exception;'Failed'|Out-File $StatusFile"
+            $BuildScript += "}"
+            $BuildScript += "finally{"
+            $BuildScript += "if(-not `$Completed){'Failed'|Out-File $StatusFile}"
+            $BuildScript += "}"
 
             $BuildScriptFileName = $File.FullName -replace 'json', 'ps1'
             $BuildScript | Out-File $BuildScriptFileName
