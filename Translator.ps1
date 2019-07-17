@@ -24,7 +24,6 @@ While ($true) {
             $BuildRequest = Get-Content $File.fullname | ConvertFrom-Json
             $BuildScript += "Start-Transcript -Path `"$($File.FullName -replace 'json','log')`""
             $BuildScript += "Import-Module AutomatedLab"
-            # $BuildScript += "Add-LabDomainDefinition -Name vm.net -AdminUser Install -AdminPassword Somepass1"
             
             if($BuildRequest.Rebuild){
                 Write-Host "   [-] Removing and rebuilding lab: $($BuildRequest.Labname)" -ForegroundColor Red
@@ -33,18 +32,19 @@ While ($true) {
                 $BuildScript += "Remove-Lab -Name $($BuildRequest.LabName) -Confirm:`$false -ErrorAction SilentlyContinue" 
                 $BuildScript += "}"
             }
-
+            
             $BuildScript += "New-LabDefinition -Name $($BuildRequest.Labname) -DefaultVirtualizationEngine HyperV  -VmPath D:\VHD\"
             
             Write-Host "   [+] Add lab virtual network definition [$($BuildRequest.NetworkAddressSpace)]" -ForegroundColor Green               
             $BuildScript += "Add-LabVirtualNetworkDefinition -Name $($BuildRequest.NetworkName) -AddressSpace $($BuildRequest.NetworkAddressSpace)"
             
             Foreach ($Item in $BuildRequest.Request) {
-
                 Write-Host "   [+] Adding lab machine defination for $($Item.Name)" -ForegroundColor Green
                 $BuildScript += "`$installationCredential = New-Object PSCredential(`"$($Item.adminuser)`", (`"$($Item.adminpass)`" | ConvertTo-SecureString -AsPlainText -Force))"
-
+                
                 if ($Item.Roles -like "*RootDC*") {
+                    #$BuildScript += "Add-LabDomainDefinition -Name {0} -AdminUser {1} -AdminPassword {2}" -f $Item.Domain, $Item.adminuser, $Item.adminpass
+                    #$BuildScript += "Set-LabInstallationCredential -User {0} -Password {1}" -f  $Item.adminuser, $Item.adminpass
                     $BuildScript += "Add-LabMachineDefinition -Name {0} -Memory {1}GB -OperatingSystem `'{2}`' -Roles {3} -DomainName {4} -Processors {5} -IpAddress {6}" -f $Item.Name, $Item.Memory, $OperatingSystemMapping[$Item.OS], $($Item.Roles -replace "None ", "" -split " " -join ", "), $Item.Domain, $Item.Processor, $Item.ip
                 }
                 elseif ($Item.Roles -like "*None*") {

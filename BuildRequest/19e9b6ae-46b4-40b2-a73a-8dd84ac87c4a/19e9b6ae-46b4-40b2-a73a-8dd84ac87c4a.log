@@ -1,0 +1,118 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20190717132134
+Username: THINKPAD\Prateek
+RunAs User: THINKPAD\Prateek
+Configuration Name: 
+Machine: THINKPAD (Microsoft Windows NT 10.0.18362.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe D:\Workspace\LabAutomation\BuildRequest\19e9b6ae-46b4-40b2-a73a-8dd84ac87c4a\19e9b6ae-46b4-40b2-a73a-8dd84ac87c4a.ps1
+Process ID: 3884
+PSVersion: 5.1.18362.145
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.18362.145
+BuildVersion: 10.0.18362.145
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is D:\Workspace\LabAutomation\BuildRequest\19e9b6ae-46b4-40b2-a73a-8dd84ac87c4a\19e9b6ae-46b4-40b2-a73a-8dd84ac87c4a.log
+13:21:37|00:00:00|00:00:00.000| Initialization
+13:21:37|00:00:00|00:00:00.040| - Host operating system version: '10.0.18362'
+13:21:37|00:00:00|00:00:00.047| - Creating new lab definition with name 'demo'
+13:21:37|00:00:00|00:00:00.071| - Location of lab definition files will be 'C:\ProgramData\AutomatedLab\Labs\demo'
+13:21:38|00:00:00|00:00:00.919| - Location of LabSources folder is 'D:\LabSources'
+13:21:38|00:00:00|00:00:00.003| - Auto-adding ISO files
+13:21:39|00:00:01|00:00:00.287|   - found 5 OS images in the cache
+PS>TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+13:21:39|00:00:01|00:00:00.684|   - Added 'D:\LabSources\ISOs\17763.379.190312-0539.rs5_release_svc_refresh_SERVERESSENTIALS_OEM_x64FRE_en-us.iso'
+13:21:39|00:00:01|00:00:00.696|   - Added 'D:\LabSources\ISOs\en_windows_server_2016_x64_dvd_9718492.iso'
+13:21:39|00:00:01|00:00:00.703|   - Added 'D:\LabSources\ISOs\ubuntu-18.04.2-desktop-amd64.iso'
+13:21:39|00:00:01|00:00:00.715|   - Done
+13:21:39|00:00:01|00:00:01.695| - Path for VMs specified as 'D:\VHD\'
+13:21:40|00:00:02|00:00:00.000| - Adding Hyper-V machine definition 'dc2'         (Roles: RootDC)
+13:21:42|00:00:04|00:00:01.444|   - Done
+13:21:42|00:00:04|00:00:00.000| - Adding Hyper-V machine definition 'client01'    (Roles: WebServer)
+13:21:42|00:00:04|00:00:00.288|   - Done
+13:21:42|00:00:04|00:00:00.000| - Adding Hyper-V machine definition 'client02'    (Roles: FileServer)
+13:21:42|00:00:04|00:00:00.268|   - Done
+13:21:43|00:00:05|00:00:05.615| Estimated (additional) local drive space needed for all machines: 6 GB
+13:21:43|00:00:05|00:00:05.756| Location of Hyper-V machines will be 'D:\VHD\'
+13:21:43|00:00:05|00:00:05.963| Done
+13:21:44|00:00:06|00:00:00.000| Validating lab definition
+13:21:46|00:00:08|00:00:02.268| - Could not invoke validator AutomatedLab.UnknownRoleProperties
+13:21:46|00:00:08|00:00:02.637| - Success
+
+13:21:47|00:00:09|00:00:00.000| Lab 'demo' hosted on 'HyperV' imported with 3 machines
+13:21:48|00:00:10|00:00:00.000| Creating virtual networks
+13:21:48|00:00:10|00:00:00.000| - Creating Hyper-V virtual network 'vn001'
+13:21:51|00:00:14|00:00:03.675|   - Done
+13:21:52|00:00:14|00:00:03.815| - Done
+13:21:52|00:00:14|00:00:05.020| done
+13:21:52|00:00:14|00:00:00.000| Creating base images
+13:21:54|00:00:16|00:00:02.283| - All base images were created previously
+13:21:55|00:00:17|00:00:03.587| - Done
+13:21:55|00:00:17|00:00:08.644| done
+13:21:55|00:00:17|00:00:00.000| Creating Additional Disks
+13:21:57|00:00:19|00:00:01.554| - Done
+13:21:57|00:00:19|00:00:00.000| Creating VMs
+13:21:57|00:00:19|00:00:00.308| - The hosts file has been added 6 records. Clean them up using 'Remove-Lab' or manually if needed
+13:21:57|00:00:19|00:00:00.000| - Creating HyperV machine 'dc2'
+.
+.
+.
+.
+.
+13:22:05|00:00:27|00:00:07.688|   - Done
+13:22:05|00:00:27|00:00:00.000| - Creating HyperV machine 'client01'
+.
+.
+.
+.
+.
+13:22:09|00:00:31|00:00:04.536|   - Done
+13:22:09|00:00:31|00:00:00.003| - Creating HyperV machine 'client02'
+.
+.
+.
+.
+.
+13:22:15|00:00:37|00:00:05.477|   - Done
+13:22:15|00:00:37|00:00:00.000| - Waiting for all machines to finish installing
+13:22:15|00:00:37|00:00:00.003|   - Done
+13:22:16|00:00:38|00:00:19.443| - Done
+13:22:16|00:00:38|00:00:00.000| Installing Root Domain Controllers
+13:22:16|00:00:38|00:00:00.013| - Machines with RootDC role to be installed: 'dc2'
+13:22:17|00:00:39|00:00:00.611| - Waiting for machines to start up
+.
+.
+.
+.
+.
+13:23:07|00:01:29|00:00:50.867| - Waiting for Root Domain Controllers to complete installation of Active Directory and restart
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+False
