@@ -1,5 +1,5 @@
 Using module Polaris
-Import-Module -Name Polaris
+Import-Module -Name Polaris, PSHTML
 Add-Type -AssemblyName System.Web
 $Url = "http://localhost:8080"
 
@@ -108,15 +108,89 @@ New-PolarisPostRoute -Path "/result"  -Scriptblock {
     $Response.Send($HTML)
 }
 
+New-PolarisGetRoute -Path "/status" -Scriptblock {
+    $HTML = html {
+        head {
+            Title "Build Status"
+            link -rel "stylesheet" -type "text/css" -href "css/style.css"
+            link -rel "stylesheet" -type "text/css" -href "css/bootstrap.min.css"
+            meta -httpequiv "refresh" -content "10"
+        }
+        body {
+            hr 
+            br
+            br
+            ol -class "breadcrumb" -Content {
+                li -Class "breadcrumb-item" -Content {
+                    a -href "http://localhost:8080" -Content {'Home'}
+                }
+                li -Class "breadcrumb-item" -Content {
+                    a -href "http://localhost:8080/build/" -Content {'Build File Server'}
+                }
+                li -Class "breadcrumb-item" -Content {
+                    a -href "http://localhost:8080/status" -Content {'Build Status'}
+                }
+            }    
+
+            Table {
+                tr -Content {
+                    Th -Content "TimeStamp"
+                    Th -Content "Build-ID"
+                    Th -Content "Status"
+                }
+                tr -Content {
+
+                    $files = Get-ChildItem .\BuildRequest\ -Filter 'status.txt' -Recurse
+                    foreach ($file in $files) {
+                        $Status = Get-Content $file.FullName
+                        tr -Content {
+                            td -Content {
+                                (Get-Date).tostring('dd-MMM-yyyy hh:mm:ss tt')
+                            }
+                            td -Content {
+                                $file.PSParentPath -split "\\" | Select -Last 1
+                            }
+                            if ($Status -eq "InProgress") {
+                                td -Content {
+                                    $Status
+                                } -Style "color:YELLOW"
+                            }
+                            elseif($Status -eq "Failed") {
+                                td -Content {
+                                    $Status
+                                } -Style "color:RED"
+                            }
+                            elseif($Status -eq "Completed"){
+                                        td -Content {
+                                            $Status
+                                        } -Style "color:GREEN"
+                                    }
+                            else{
+                                                td -Content {
+                                                    $Status
+                                                } -Style "color:Gray"
+
+                            }
+                        }
+                    }
+                } -Id "customers" -Attributes @{"border"="1"}
+            } 
+        } -Style "font-family:Candara"
+    }
+    $Response.SetContentType('text/html')
+    $Response.Send($HTML)
+}
+
+
 $Polaris = Start-Polaris -Port 8080
 Write-Host "`n[+] Web server listening on : http://localhost:$($Polaris.Port)" -ForegroundColor Yellow
 Get-PolarisRoute |Select-Object Path, Method | Sort-Object
 
 # TODO Add input validation and mandatory\required fields
-# TODO Implement translation service
+# DONE Implement translation service
 # TODO Implement build status page
-# TODO Implement Successful status page
+# DONE Implement Successful status page
 # TODO Implement PowerShell Script Download function
-# TODO Build type - new \ rebuild
+# DONE Build type - new \ rebuild
 # TODO post installation scripts
-# TODO OS hashtable to convert small OS name to Exact OS name
+# DONE OS hashtable to convert small OS name to Exact OS name
