@@ -1,0 +1,35 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20190718133816
+Username: THINKPAD\Prateek
+RunAs User: THINKPAD\Prateek
+Configuration Name: 
+Machine: THINKPAD (Microsoft Windows NT 10.0.18362.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe D:\Workspace\LabAutomation\BuildRequest\0fb3b1f9-84c3-4014-8705-a378835b7cc9\0fb3b1f9-84c3-4014-8705-a378835b7cc9.ps1
+Process ID: 14612
+PSVersion: 5.1.18362.145
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.18362.145
+BuildVersion: 10.0.18362.145
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is D:\Workspace\LabAutomation\BuildRequest\0fb3b1f9-84c3-4014-8705-a378835b7cc9\0fb3b1f9-84c3-4014-8705-a378835b7cc9.log
+13:38:20|00:00:00|00:00:00.004| Validating lab definition
+13:38:24|00:00:03|00:00:03.630| - Could not invoke validator AutomatedLab.UnknownRoleProperties
+13:38:24|00:00:04|00:00:04.000| - Success
+
+13:38:24|00:00:04|00:00:00.000| Lab 'two' hosted on 'HyperV' imported with 3 machines
+
+13:38:25|00:00:05|00:00:01.199| Lab 'two' hosted on 'HyperV' imported with 3 machines
+13:38:26|00:00:06|00:00:00.000| Removing lab 'two'
+13:38:26|00:00:06|00:00:00.061| - Removing lab sessions
+13:38:27|00:00:06|00:00:00.900| - Removing lab background jobs
+13:38:28|00:00:08|00:00:02.029| - Removing Lab VM 'dc' (and its associated disks)
+13:38:29|00:00:08|00:00:02.872| - Lab VM 'dc' has been removed
+13:38:29|00:00:09|00:00:03.074| - Removing Lab VM 's1' (and its associated disks)
+13:38:30|00:00:09|00:00:03.633| - Lab VM 's1' has been removed
+13:38:30|00:00:09|00:00:03.675| - Removing entries in the hosts file
+13:38:30|00:00:09|00:00:03.735| - Removing virtual networks

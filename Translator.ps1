@@ -20,12 +20,15 @@ While ($true) {
         Write-Host ("`n[+] {0} new build request(s) found." -f $Files.count) -ForegroundColor Magenta
         Foreach ($File in $Files) {
             $StatusFile = Join-Path $file.PSParentPath 'status.txt'
-            'InProgress' | Out-File $StatusFile -Verbose
+            [PSCustomObject]@{
+                Status = 'InProgress'
+                PID = 0
+            } | Export-Csv $StatusFile -NoTypeInformation
             Add-Content .\BuildRequest\Processed.txt -Value $File.BaseName
             Write-Host "`n[+] Processing Build Request [$($File.BaseName)]" -ForegroundColor Green
             $BuildRequest = Get-Content $File.fullname | ConvertFrom-Json
-            $BuildScript += "`$ErrorActionPreference = 'Stop'"
-            $BuildScript += "try{"
+            # $BuildScript += "try{"
+            # $BuildScript += "`$ErrorActionPreference = 'SilentlyContinue'"
             $BuildScript += "`$Completed=`$false"
             $BuildScript += "Start-Transcript -Path `"$($File.FullName -replace 'json','log')`""
             $BuildScript += "Import-Module AutomatedLab"
@@ -69,26 +72,31 @@ While ($true) {
                 $BuildScript += "Get-Job -Name 'Installation of*' | Wait-Job | Out-Null"
             }
 
-            $BuildScript += "Show-LabDeploymentSummary -Detailed"
             
             # take snapshots of the virtual machines
             if ($BuildRequest.Checkpoint) {
                 $BuildScript += "Checkpoint-LabVM -All -SnapshotName 1"
                 Write-Host "   [+] Adding snapshot creation" -ForegroundColor Green
             }
-   
-            $BuildScript += "`$Completed=`$true;'Completed'|Out-File $StatusFile"
-            $BuildScript += "}"
-            $BuildScript += "catch{"
-            $BuildScript += "`$_.Exception;'Failed'|Out-File $StatusFile"
-            $BuildScript += "}"
-            $BuildScript += "finally{"
-            $BuildScript += "if(-not `$Completed){'Failed'|Out-File $StatusFile}"
-            $BuildScript += "}"
+            
+            $BuildScript += "Show-LabDeploymentSummary -Detailed"
+            $BuildScript += "`$data = Import-Csv $StatusFile; `$data.Status = 'Completed';`$data| Export-csv $StatusFile"
+            # $BuildScript += "`$Completed=`$true;'Completed'|Out-File $StatusFile"
+            # $BuildScript += "}"
+            # $BuildScript += "catch{"
+            # $BuildScript += "'Failed'|Out-File $StatusFile"
+            # $BuildScript += "}"
+            # $BuildScript += "finally{"
+            # $BuildScript += "if(-not `$Completed){'Failed'|Out-File $StatusFile}"
+            # $BuildScript += "}"
 
             $BuildScriptFileName = $File.FullName -replace 'json', 'ps1'
             $BuildScript | Out-File $BuildScriptFileName
-            Start-Process powershell.exe -ArgumentList $BuildScriptFileName
+            $ProcessID = Start-Process powershell.exe -ArgumentList $BuildScriptFileName -PassThru| % ID
+            [PSCustomObject]@{
+                Status = 'InProgress'
+                PID = $ProcessID
+            } | Export-Csv $StatusFile -NoTypeInformation
         }
         $flag = $true
     }

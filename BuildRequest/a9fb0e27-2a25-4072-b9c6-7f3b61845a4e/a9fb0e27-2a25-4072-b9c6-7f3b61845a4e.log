@@ -1,0 +1,141 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20190718132636
+Username: THINKPAD\Prateek
+RunAs User: THINKPAD\Prateek
+Configuration Name: 
+Machine: THINKPAD (Microsoft Windows NT 10.0.18362.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe D:\Workspace\LabAutomation\BuildRequest\a9fb0e27-2a25-4072-b9c6-7f3b61845a4e\a9fb0e27-2a25-4072-b9c6-7f3b61845a4e.ps1
+Process ID: 15688
+PSVersion: 5.1.18362.145
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.18362.145
+BuildVersion: 10.0.18362.145
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is D:\Workspace\LabAutomation\BuildRequest\a9fb0e27-2a25-4072-b9c6-7f3b61845a4e\a9fb0e27-2a25-4072-b9c6-7f3b61845a4e.log
+13:26:39|00:00:00|00:00:00.003| Validating lab definition
+13:26:42|00:00:03|00:00:03.140| - Could not invoke validator AutomatedLab.UnknownRoleProperties
+13:26:43|00:00:03|00:00:03.533| - Success
+
+13:26:43|00:00:04|00:00:00.000| Lab 'two' hosted on 'HyperV' imported with 3 machines
+
+13:26:44|00:00:05|00:00:01.226| Lab 'two' hosted on 'HyperV' imported with 3 machines
+13:26:45|00:00:05|00:00:00.000| Removing lab 'two'
+13:26:45|00:00:05|00:00:00.062| - Removing lab sessions
+13:26:46|00:00:06|00:00:00.757| - Removing lab background jobs
+13:26:47|00:00:07|00:00:01.565| - Removing Lab VM 'dc' (and its associated disks)
+13:26:47|00:00:08|00:00:02.295| - Lab VM 'dc' has been removed
+13:26:47|00:00:08|00:00:02.459| - Removing Lab VM 's1' (and its associated disks)
+13:26:48|00:00:08|00:00:02.897| - Lab VM 's1' has been removed
+13:26:48|00:00:08|00:00:02.933| - Removing entries in the hosts file
+13:26:48|00:00:08|00:00:03.007| - Removing virtual networks
+13:26:49|00:00:10|00:00:04.289| - Removing Lab XML files
+13:26:50|00:00:10|00:00:04.897| - Done removing lab 'two'
+13:26:50|00:00:00|00:00:00.000| Initialization
+13:26:50|00:00:00|00:00:00.007| - Host operating system version: '10.0.18362'
+13:26:50|00:00:00|00:00:00.012| - Creating new lab definition with name 'two'
+13:26:50|00:00:00|00:00:00.024| - Location of lab definition files will be 'C:\ProgramData\AutomatedLab\Labs\two'
+13:26:50|00:00:00|00:00:00.437| - Location of LabSources folder is 'D:\LabSources'
+13:26:50|00:00:00|00:00:00.000| - Auto-adding ISO files
+13:26:51|00:00:00|00:00:00.244|   - found 5 OS images in the cache
+PS>TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+13:26:51|00:00:01|00:00:00.610|   - Added 'D:\LabSources\ISOs\17763.379.190312-0539.rs5_release_svc_refresh_SERVERESSENTIALS_OEM_x64FRE_en-us.iso'
+13:26:51|00:00:01|00:00:00.631|   - Added 'D:\LabSources\ISOs\en_windows_server_2016_x64_dvd_9718492.iso'
+13:26:51|00:00:01|00:00:00.642|   - Added 'D:\LabSources\ISOs\ubuntu-18.04.2-desktop-amd64.iso'
+13:26:51|00:00:01|00:00:00.663|   - Done
+13:26:51|00:00:01|00:00:01.148| - Path for VMs specified as 'D:\VHD\'
+13:26:52|00:00:01|00:00:00.000| - Adding Hyper-V machine definition 'dc'          (Roles: RootDC)
+13:26:53|00:00:03|00:00:01.323|   - Done
+13:26:53|00:00:03|00:00:00.000| - Adding Hyper-V machine definition 's1'          (Roles: WebServer)
+13:26:54|00:00:03|00:00:00.338|   - Done
+13:26:54|00:00:03|00:00:00.000| - Adding Hyper-V machine definition 's2'          (Roles: FileServer)
+13:26:54|00:00:04|00:00:00.427|   - Done
+13:26:55|00:00:04|00:00:04.888| Estimated (additional) local drive space needed for all machines: 4 GB
+13:26:55|00:00:05|00:00:05.046| Location of Hyper-V machines will be 'D:\VHD\'
+13:26:55|00:00:05|00:00:05.123| Done
+13:26:55|00:00:05|00:00:00.000| Validating lab definition
+13:26:56|00:00:06|00:00:01.026| - Could not invoke validator AutomatedLab.UnknownRoleProperties
+13:26:57|00:00:06|00:00:01.458| - Success
+
+13:26:57|00:00:07|00:00:00.000| Lab 'two' hosted on 'HyperV' imported with 3 machines
+13:26:59|00:00:08|00:00:00.000| Creating virtual networks
+13:26:59|00:00:09|00:00:00.000| - Creating Hyper-V virtual network 'mynetwork'
+13:27:02|00:00:12|00:00:03.261|   - Done
+13:27:02|00:00:12|00:00:03.470| - Done
+13:27:03|00:00:12|00:00:05.444| Another lab disk deployment seems to be in progress. If this is not correct, please delete the file 'C:\ProgramData\AutomatedLab\LabDiskDeploymentInProgress.txt'.
+13:27:03|00:00:12|00:00:05.475| Waiting until other disk deployment is finished.
+.
+.
+.
+.
+.
+done
+13:28:18|00:01:27|00:00:00.000| Creating base images
+13:28:18|00:01:27|00:00:00.184| - All base images were created previously
+13:28:19|00:01:29|00:00:01.475| - Done
+13:28:19|00:01:29|00:01:22.021| done
+13:28:19|00:01:29|00:00:00.000| Creating Additional Disks
+13:28:21|00:01:30|00:00:01.793| - Done
+13:28:21|00:01:30|00:00:00.000| Creating VMs
+13:28:21|00:01:31|00:00:00.241| - The hosts file has been added 6 records. Clean them up using 'Remove-Lab' or manually if needed
+13:28:21|00:01:31|00:00:00.000| - Creating HyperV machine 'dc'
+.
+.
+.
+.
+.
+13:28:28|00:01:38|00:00:06.867|   - Done
+13:28:28|00:01:38|00:00:00.000| - Creating HyperV machine 's1'
+.
+.
+.
+.
+.
+13:28:33|00:01:42|00:00:04.569|   - Done
+13:28:33|00:01:42|00:00:00.000| - Creating HyperV machine 's2'
+.
+13:28:33|00:01:42|00:00:00.028|   - The machine 's2' does already exist
+13:28:33|00:01:42|00:00:00.035|   - Could not create HyperV machine 's2'
+13:28:33|00:01:42|00:00:00.000| - Waiting for all machines to finish installing
+13:28:33|00:01:42|00:00:00.007|   - Done
+13:28:33|00:01:43|00:00:12.432| - Done
+13:28:33|00:01:43|00:00:00.000| Installing Root Domain Controllers
+13:28:33|00:01:43|00:00:00.017| - Machines with RootDC role to be installed: 'dc'
+13:28:34|00:01:43|00:00:00.565| - Waiting for machines to start up
+.
+.
+.
+.
+.
+.
+13:29:31|00:02:40|00:00:57.328| - Waiting for Root Domain Controllers to complete installation of Active Directory and restart
+.
+.
+.
+.
+.
+.
+.
+.
+done
+13:33:50|00:06:59|00:05:16.440| - Root Domain Controllers have now restarted. Waiting for Active Directory to start up
+.
+.
+PS>TerminatingError(Invoke-LabCommand): "Cannot bind argument to parameter 'ComputerName' because it is an empty array."
+.
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+False

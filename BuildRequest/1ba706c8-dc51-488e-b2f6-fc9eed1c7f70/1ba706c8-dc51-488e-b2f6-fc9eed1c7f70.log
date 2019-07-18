@@ -1,0 +1,202 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20190718141302
+Username: THINKPAD\Prateek
+RunAs User: THINKPAD\Prateek
+Configuration Name: 
+Machine: THINKPAD (Microsoft Windows NT 10.0.18362.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe D:\Workspace\LabAutomation\BuildRequest\1ba706c8-dc51-488e-b2f6-fc9eed1c7f70\1ba706c8-dc51-488e-b2f6-fc9eed1c7f70.ps1
+Process ID: 3528
+PSVersion: 5.1.18362.145
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.18362.145
+BuildVersion: 10.0.18362.145
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is D:\Workspace\LabAutomation\BuildRequest\1ba706c8-dc51-488e-b2f6-fc9eed1c7f70\1ba706c8-dc51-488e-b2f6-fc9eed1c7f70.log
+14:13:05|00:00:00|00:00:00.000| Initialization
+14:13:05|00:00:00|00:00:00.042| - Host operating system version: '10.0.18362'
+14:13:05|00:00:00|00:00:00.051| - Creating new lab definition with name 'two'
+14:13:05|00:00:00|00:00:00.075| - Location of lab definition files will be 'C:\ProgramData\AutomatedLab\Labs\two'
+14:13:06|00:00:01|00:00:01.296| - Location of LabSources folder is 'D:\LabSources'
+14:13:06|00:00:01|00:00:00.000| - Auto-adding ISO files
+14:13:06|00:00:01|00:00:00.302|   - found 5 OS images in the cache
+PS>TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+14:13:07|00:00:02|00:00:00.779|   - Added 'D:\LabSources\ISOs\17763.379.190312-0539.rs5_release_svc_refresh_SERVERESSENTIALS_OEM_x64FRE_en-us.iso'
+14:13:07|00:00:02|00:00:00.793|   - Added 'D:\LabSources\ISOs\en_windows_server_2016_x64_dvd_9718492.iso'
+14:13:07|00:00:02|00:00:00.798|   - Added 'D:\LabSources\ISOs\ubuntu-18.04.2-desktop-amd64.iso'
+14:13:07|00:00:02|00:00:00.810|   - Done
+14:13:07|00:00:02|00:00:02.168| - Path for VMs specified as 'D:\VHD\'
+14:13:08|00:00:03|00:00:00.000| - Adding Hyper-V machine definition 'dc'          (Roles: RootDC)
+14:13:09|00:00:04|00:00:01.513|   - Done
+14:13:10|00:00:04|00:00:00.000| - Adding Hyper-V machine definition 's1'          (Roles: WebServer)
+14:13:10|00:00:05|00:00:00.562|   - Done
+14:13:10|00:00:05|00:00:00.000| - Adding Hyper-V machine definition 's2'          (Roles: FileServer)
+14:13:10|00:00:05|00:00:00.277|   - Done
+14:13:11|00:00:06|00:00:06.632| Estimated (additional) local drive space needed for all machines: 6 GB
+14:13:11|00:00:06|00:00:06.773| Location of Hyper-V machines will be 'D:\VHD\'
+14:13:12|00:00:06|00:00:06.976| Done
+14:13:12|00:00:07|00:00:00.000| Validating lab definition
+14:13:14|00:00:09|00:00:02.352| - Could not invoke validator AutomatedLab.UnknownRoleProperties
+14:13:15|00:00:09|00:00:02.688| - Success
+
+14:13:15|00:00:10|00:00:00.000| Lab 'two' hosted on 'HyperV' imported with 3 machines
+14:13:16|00:00:11|00:00:00.000| Creating virtual networks
+14:13:16|00:00:11|00:00:00.000| - Creating Hyper-V virtual network 'mynetwork'
+14:13:20|00:00:15|00:00:03.502|   - Done
+14:13:20|00:00:15|00:00:03.658| - Done
+14:13:20|00:00:15|00:00:05.017| done
+14:13:20|00:00:15|00:00:00.001| Creating base images
+14:13:22|00:00:17|00:00:02.374| - All base images were created previously
+14:13:23|00:00:18|00:00:03.672| - Done
+14:13:24|00:00:18|00:00:08.731| done
+14:13:24|00:00:18|00:00:00.000| Creating Additional Disks
+14:13:25|00:00:20|00:00:01.826| - Done
+14:13:25|00:00:20|00:00:00.000| Creating VMs
+14:13:26|00:00:21|00:00:00.343| - The hosts file has been added 6 records. Clean them up using 'Remove-Lab' or manually if needed
+14:13:26|00:00:21|00:00:00.000| - Creating HyperV machine 'dc'
+.
+.
+.
+.
+.
+14:13:34|00:00:28|00:00:07.762|   - Done
+14:13:34|00:00:28|00:00:00.000| - Creating HyperV machine 's1'
+.
+.
+.
+.
+.
+14:13:39|00:00:34|00:00:05.558|   - Done
+14:13:39|00:00:34|00:00:00.000| - Creating HyperV machine 's2'
+.
+.
+.
+.
+.
+14:13:46|00:00:41|00:00:06.644|   - Done
+14:13:46|00:00:41|00:00:00.000| - Waiting for all machines to finish installing
+14:13:46|00:00:41|00:00:00.026|   - Done
+14:13:47|00:00:42|00:00:22.016| - Done
+14:13:47|00:00:42|00:00:00.000| Installing Root Domain Controllers
+14:13:47|00:00:42|00:00:00.011| - Machines with RootDC role to be installed: 'dc'
+14:13:48|00:00:43|00:00:00.629| - Waiting for machines to start up
+.
+.
+.
+.
+.
+.
+14:14:45|00:01:40|00:00:57.823| - Waiting for Root Domain Controllers to complete installation of Active Directory and restart
+.
+.
+.
+.
+.
+.
+.
+done
+14:19:04|00:05:59|00:05:16.587| - Root Domain Controllers have now restarted. Waiting for Active Directory to start up
+.
+.
+PS>TerminatingError(Invoke-LabCommand): "Cannot bind argument to parameter 'ComputerName' because it is an empty array."
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+14:47:40|00:34:35|00:33:52.359| - Done
+14:47:40|00:34:35|00:00:00.000| Installing Web Servers
+14:47:40|00:34:35|00:00:00.013| - Machines to have Web Server role installed: 's1'
+14:47:40|00:34:35|00:00:00.058| - Waiting for machines to start up
+.
+.
+.
+.
+.
+14:49:13|00:36:08|00:01:32.912| - Waiting for Web Server role to complete installation
+.
+.
+.
+.
+.
+.
+.
+14:51:56|00:38:51|00:04:15.937| - Done
+14:51:56|00:38:51|00:00:00.001| Starting remaining machines
+14:51:56|00:38:51|00:00:00.013| - Waiting for machines to start up...
+.
+.
+.
+.
+.
+14:53:40|00:40:35|00:01:44.203| - Done
+PS>TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+14:53:41|00:40:36|00:00:00.000| Installing software package 'D:\LabSources\SoftwarePackages\Notepad++.exe' on machines 'dc, s1, s2'
+PS>TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+PS>TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+14:54:55|00:41:49|00:01:13.335| - Installation started in background
+PS>TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+14:54:55|00:41:50|00:00:00.000| Installing software package 'D:\LabSources\SoftwarePackages\winrar.exe' on machines 'dc, s1, s2'
+PS>TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+PS>TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+14:55:06|00:42:01|00:00:11.468| - Installation started in background
+14:55:35|00:42:30|00:42:20.294| ---------------------------------------------------------------------------
+14:55:35|00:42:30|00:42:20.349| Setting up the lab took 0 hour, 42 minutes and 30 seconds
+14:55:35|00:42:30|00:42:20.414| Lab name is 'two' and is hosted on 'HyperV'. There are 3 machine(s) and 1 network(s) defined.
+14:55:35|00:42:30|00:42:20.449|
+14:55:35|00:42:30|00:42:20.476| ----------------------------- Network Summary -----------------------------
+14:55:35|00:42:30|00:42:20.583|
+14:55:36|00:42:30|00:42:20.835| Name      AddressSpace   SwitchType AdapterName IssuedIpAddresses
+14:55:36|00:42:31|00:42:21.082| ----      ------------   ---------- ----------- -----------------
+14:55:36|00:42:31|00:42:21.127| mynetwork 192.168.1.0/24   Internal                             0
+14:55:36|00:42:31|00:42:21.162|
+14:55:36|00:42:31|00:42:21.184|
+14:55:36|00:42:31|00:42:21.235| ----------------------------- Domain Summary ------------------------------
+14:55:36|00:42:31|00:42:21.377|
+14:55:36|00:42:31|00:42:21.401| Name    Administrator Password  RootDomain
+14:55:36|00:42:31|00:42:21.426| ----    ------------- --------  ----------
+14:55:36|00:42:31|00:42:21.450| two.com Administrator Somepass1
+14:55:36|00:42:31|00:42:21.471|
+14:55:36|00:42:31|00:42:21.494|
+14:55:36|00:42:31|00:42:21.515| ------------------------- Virtual Machine Summary -------------------------
+14:55:36|00:42:31|00:42:21.614|
+14:55:36|00:42:31|00:42:21.636| Name DomainName IpAddress        Roles        OperatingSystem
+14:55:36|00:42:31|00:42:21.667| ---- ---------- ---------        -----        ---------------
+14:55:36|00:42:31|00:42:21.713| dc   two.com    {192.168.1.0/24} {RootDC}     Windows Server 2016 Standard (Deskt...
+14:55:37|00:42:32|00:42:21.957| s1   two.com    {192.168.1.0/24} {WebServer}  Windows Server 2016 Standard (Deskt...
+14:55:37|00:42:32|00:42:22.089| s2   two.com    {192.168.1.0/24} {FileServer} Windows Server 2016 Standard (Deskt...
+14:55:37|00:42:32|00:42:22.113|
+14:55:37|00:42:32|00:42:22.133|
+14:55:37|00:42:32|00:42:22.154| ---------------------------------------------------------------------------
+14:55:37|00:42:32|00:42:22.172| Please use the following cmdlets to interact with the machines:
+14:55:37|00:42:32|00:42:22.200| - Get-LabVMStatus, Get, Start, Restart, Stop, Wait, Connect, Save-LabVM and Wait-LabVMRestart (some of them provide a Wait switch)
+14:55:37|00:42:32|00:42:22.232| - Invoke-LabCommand, Enter-LabPSSession, Install-LabSoftwarePackage and Install-LabWindowsFeature (do not require credentials and
+14:55:37|00:42:32|00:42:22.263|   work the same way with Hyper-V and Azure)
+14:55:37|00:42:32|00:42:22.284| - Checkpoint-LabVM, Restore-LabVMSnapshot and Get-LabVMSnapshot (only for Hyper-V)
+14:55:37|00:42:32|00:42:22.325| - Get-LabInternetFile downloads files from the internet and places them on LabSources (locally or on Azure)
+14:55:37|00:42:32|00:42:22.358| ---------------------------------------------------------------------------
+PS>$global:?
+True

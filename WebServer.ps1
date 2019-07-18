@@ -87,6 +87,7 @@ New-PolarisPostRoute -Path "/result"  -Scriptblock {
   <li class="breadcrumb-item"><a href="http://localhost:8080">Home</a></li>
   <li class="breadcrumb-item active">Result</li>
   <li class="breadcrumb-item active"><a href="http://localhost:8080/build/">Build File Server</a></li>
+  <li class="breadcrumb-item active"><a href="http://localhost:8080/status">Build Status</a></li>
 </ol>
 
     <div class="card border-success mb-3" style="max-width: 20rem;">
@@ -127,7 +128,7 @@ New-PolarisGetRoute -Path "/status" -Scriptblock {
                     a -href "http://localhost:8080/build/" -Content { 'Build File Server' }
                 }
                 li -Class "breadcrumb-item" -Content {
-                    a -href "http://localhost:8080/status" -Content { 'Build Status' }
+                    'Build Status'
                 }
             }  
             
@@ -142,7 +143,7 @@ New-PolarisGetRoute -Path "/status" -Scriptblock {
 
                         $files = Get-ChildItem .\BuildRequest\ -Filter 'status.txt' -Recurse | sort-object creationtime
                         foreach ($file in $files) {
-                            $Status = Get-Content $file.FullName
+                            $Status = Import-Csv $file.FullName
                             $ParentFolder = $file.PSParentPath
                             $GUID = $ParentFolder -split "\\" | Select-Object -Last 1
                         
@@ -154,24 +155,35 @@ New-PolarisGetRoute -Path "/status" -Scriptblock {
                                 td -Content {
                                     a -href "$Url/build/$GUID/" -Content { $GUID }
                                 } -Class "dashedborder"
-                                if ($Status -eq "InProgress") {
+                                if ($Status.status -eq "InProgress" -and (Get-Process -ID $Status.PID -ErrorAction SilentlyContinue)) {
+                                    $Status.status = "InProgress"
+                                    $Status| Export-csv $File.FullName
                                     td -Content {
-                                        $Status
+                                        $Status.Status
                                     } -Style "background-color:YELLOW" -Class "dashedborder"
                                 }
-                                elseif ($Status -eq "Failed") {
+                                elseif ($Status.status -eq "InProgress" -and !(Get-Process -ID $Status.PID -ErrorAction SilentlyContinue)) {
+                                    $Status.status = "Failed"
+                                    $Status| Export-csv $File.FullName
                                     td -Content {
-                                        $Status
+                                        $Status.status
                                     } -Style "background-color:RED" -Class "dashedborder"
                                 }
-                                elseif ($Status -eq "Completed") {
+                                elseif ($Status.status -eq "Failed") {
                                     td -Content {
-                                        $Status
+                                        $Status.status 
+                                    } -Style "background-color:RED" -Class "dashedborder"
+                                }
+                                elseif ($Status.status -eq "Completed") {
+                                    $Status.status = "Completed"
+                                    $Status| Export-csv $File.FullName
+                                    td -Content {
+                                        $Status.status 
                                     } -Style "background-color:GREEN" -Class "dashedborder"
                                 }
                                 else {
                                     td -Content {
-                                        $Status
+                                        $Status.Status
                                     } -Style "background-color:Gray" -Class "dashedborder"
 
                                 }

@@ -1,0 +1,58 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20190718132256
+Username: THINKPAD\Prateek
+RunAs User: THINKPAD\Prateek
+Configuration Name: 
+Machine: THINKPAD (Microsoft Windows NT 10.0.18362.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe D:\Workspace\LabAutomation\BuildRequest\b88d2462-5691-49d8-9c44-8ea08f0ca404\b88d2462-5691-49d8-9c44-8ea08f0ca404.ps1
+Process ID: 13764
+PSVersion: 5.1.18362.145
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.18362.145
+BuildVersion: 10.0.18362.145
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is D:\Workspace\LabAutomation\BuildRequest\b88d2462-5691-49d8-9c44-8ea08f0ca404\b88d2462-5691-49d8-9c44-8ea08f0ca404.log
+13:22:59|00:00:00|00:00:00.000| Initialization
+13:22:59|00:00:00|00:00:00.044| - Host operating system version: '10.0.18362'
+13:22:59|00:00:00|00:00:00.053| - Creating new lab definition with name 'two'
+13:22:59|00:00:00|00:00:00.077| - Location of lab definition files will be 'C:\ProgramData\AutomatedLab\Labs\two'
+13:23:00|00:00:01|00:00:01.109| - Location of LabSources folder is 'D:\LabSources'
+13:23:00|00:00:01|00:00:00.001| - Auto-adding ISO files
+13:23:00|00:00:01|00:00:00.293|   - found 5 OS images in the cache
+PS>TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+>> TerminatingError(): "No Azure Context found, Please run 'Connect-AzAccount' first"
+13:23:01|00:00:01|00:00:00.657|   - Added 'D:\LabSources\ISOs\17763.379.190312-0539.rs5_release_svc_refresh_SERVERESSENTIALS_OEM_x64FRE_en-us.iso'
+13:23:01|00:00:01|00:00:00.671|   - Added 'D:\LabSources\ISOs\en_windows_server_2016_x64_dvd_9718492.iso'
+13:23:01|00:00:01|00:00:00.675|   - Added 'D:\LabSources\ISOs\ubuntu-18.04.2-desktop-amd64.iso'
+13:23:01|00:00:01|00:00:00.688|   - Done
+13:23:01|00:00:01|00:00:01.859| - Path for VMs specified as 'D:\VHD\'
+13:23:02|00:00:03|00:00:00.000| - Adding Hyper-V machine definition 'dc'          (Roles: RootDC)
+13:23:04|00:00:04|00:00:01.731|   - Done
+13:23:04|00:00:04|00:00:00.000| - Adding Hyper-V machine definition 's1'          (Roles: WebServer)
+13:23:04|00:00:05|00:00:00.310|   - Done
+13:23:04|00:00:05|00:00:00.000| - Adding Hyper-V machine definition 's2'          (Roles: FileServer)
+13:23:05|00:00:05|00:00:00.283|   - Done
+13:23:05|00:00:06|00:00:06.442| Estimated (additional) local drive space needed for all machines: 6 GB
+13:23:06|00:00:06|00:00:06.606| Location of Hyper-V machines will be 'D:\VHD\'
+13:23:06|00:00:06|00:00:06.822| Done
+13:23:06|00:00:07|00:00:00.000| Validating lab definition
+13:23:08|00:00:09|00:00:02.226| - Could not invoke validator AutomatedLab.UnknownRoleProperties
+13:23:09|00:00:10|00:00:03.236| - Success
+
+13:23:10|00:00:10|00:00:00.001| Lab 'two' hosted on 'HyperV' imported with 3 machines
+13:23:11|00:00:11|00:00:00.000| Creating virtual networks
+13:23:12|00:00:13|00:00:00.000| - Creating Hyper-V virtual network 'mynetwork'
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+False
