@@ -1,0 +1,3 @@
+#TYPE System.Management.Automation.PSCustomObject
+"Status","PID","Start","End"
+"Completed","20956","7/23/2019 6:29:40 AM","7/23/2019 6:49:03 AM"

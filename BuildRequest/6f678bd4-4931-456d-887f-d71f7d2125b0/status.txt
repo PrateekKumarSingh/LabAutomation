@@ -1,3 +1,0 @@
-#TYPE System.Management.Automation.PSCustomObject
-"Status","PID"
-"Completed","20608"

@@ -1,0 +1,180 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20190723063427
+Username: THINKPAD\Prateek
+RunAs User: THINKPAD\Prateek
+Configuration Name: 
+Machine: THINKPAD (Microsoft Windows NT 10.0.18362.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe C:\Users\PRATEE~1.THI\AppData\Local\Temp\76606369-a27a-4182-a4c6-5acc725a1657.ps1
+Process ID: 18360
+PSVersion: 5.1.18362.145
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.18362.145
+BuildVersion: 10.0.18362.145
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is D:\Workspace\LabAutomation\BuildRequest\76606369-a27a-4182-a4c6-5acc725a1657\76606369-a27a-4182-a4c6-5acc725a1657.log
+06:34:32|00:00:00|00:00:00.000| Initialization
+06:34:32|00:00:00|00:00:00.047| - Host operating system version: '10.0.18362'
+06:34:32|00:00:00|00:00:00.055| - Creating new lab definition with name 'test2'
+06:34:32|00:00:00|00:00:00.084| - Location of lab definition files will be 'C:\ProgramData\AutomatedLab\Labs\test2'
+06:34:33|00:00:01|00:00:01.290| - Location of LabSources folder is 'D:\LabSources'
+06:34:33|00:00:01|00:00:00.000| - Auto-adding ISO files
+06:34:33|00:00:01|00:00:00.372|   - found 5 OS images in the cache
+06:34:34|00:00:02|00:00:00.768|   - Added 'D:\LabSources\ISOs\17763.379.190312-0539.rs5_release_svc_refresh_SERVERESSENTIALS_OEM_x64FRE_en-us.iso'
+06:34:34|00:00:02|00:00:00.776|   - Added 'D:\LabSources\ISOs\en_windows_server_2016_x64_dvd_9718492.iso'
+06:34:34|00:00:02|00:00:00.796|   - Added 'D:\LabSources\ISOs\ubuntu-18.04.2-desktop-amd64.iso'
+06:34:34|00:00:02|00:00:00.816|   - Done
+06:34:34|00:00:02|00:00:02.179| - Path for VMs specified as 'D:\VHD\'
+06:34:35|00:00:03|00:00:00.000| - Adding Hyper-V machine definition 'dc2'         (Roles: RootDC)
+06:34:39|00:00:07|00:00:03.595|   - Done
+06:34:39|00:00:07|00:00:00.000| - Adding Hyper-V machine definition 'srv3'        (Roles: WebServer)
+06:34:39|00:00:07|00:00:00.362|   - Done
+06:34:39|00:00:07|00:00:00.000| - Adding Hyper-V machine definition 'srv4'        (Roles: WebServer)
+06:34:39|00:00:07|00:00:00.322|   - Done
+06:34:40|00:00:08|00:00:08.784| Estimated (additional) local drive space needed for all machines: 6 GB
+06:34:41|00:00:08|00:00:08.952| Location of Hyper-V machines will be 'D:\VHD\'
+06:34:41|00:00:09|00:00:09.228| Done
+06:34:41|00:00:09|00:00:00.000| Validating lab definition
+06:34:44|00:00:12|00:00:02.883| - Could not invoke validator AutomatedLab.UnknownRoleProperties
+06:34:44|00:00:12|00:00:03.331| - Success
+
+06:34:45|00:00:13|00:00:00.000| Lab 'test2' hosted on 'HyperV' imported with 3 machines
+06:34:47|00:00:15|00:00:00.000| Creating virtual networks
+06:34:47|00:00:15|00:00:00.000| - Creating Hyper-V virtual network 'net2'
+06:34:50|00:00:18|00:00:02.968|   - Done
+06:34:50|00:00:18|00:00:03.160| - Done
+06:34:50|00:00:18|00:00:05.033| done
+06:34:50|00:00:18|00:00:00.004| Creating base images
+06:34:52|00:00:20|00:00:02.393| - All base images were created previously
+06:34:54|00:00:21|00:00:03.689| - Done
+06:34:54|00:00:21|00:00:08.782| done
+06:34:54|00:00:22|00:00:00.000| Creating Additional Disks
+06:34:55|00:00:23|00:00:01.590| - Done
+06:34:55|00:00:23|00:00:00.000| Creating VMs
+06:34:57|00:00:25|00:00:01.512| - The hosts file has been added 6 records. Clean them up using 'Remove-Lab' or manually if needed
+06:34:57|00:00:25|00:00:00.000| - Creating HyperV machine 'dc2'
+.
+.
+.
+.
+.
+06:35:07|00:00:35|00:00:10.142|   - Done
+06:35:07|00:00:35|00:00:00.000| - Creating HyperV machine 'srv3'
+.
+.
+.
+.
+.
+06:35:14|00:00:42|00:00:07.439|   - Done
+06:35:14|00:00:42|00:00:00.000| - Creating HyperV machine 'srv4'
+.
+.
+.
+.
+.
+06:35:20|00:00:48|00:00:05.916|   - Done
+06:35:20|00:00:48|00:00:00.000| - Waiting for all machines to finish installing
+06:35:20|00:00:48|00:00:00.011|   - Done
+06:35:21|00:00:49|00:00:25.994| - Done
+06:35:21|00:00:49|00:00:00.000| Installing Root Domain Controllers
+06:35:21|00:00:49|00:00:00.014| - Machines with RootDC role to be installed: 'dc2'
+06:35:22|00:00:50|00:00:00.690| - Waiting for machines to start up
+.
+.
+.
+.
+.
+.
+06:36:48|00:02:16|00:01:27.192| - Waiting for Root Domain Controllers to complete installation of Active Directory and restart
+.
+.
+.
+.
+.
+.
+.
+.
+done
+06:41:08|00:06:35|00:05:46.264| - Root Domain Controllers have now restarted. Waiting for Active Directory to start up
+.
+.
+PS>TerminatingError(Invoke-LabCommand): "Cannot bind argument to parameter 'ComputerName' because it is an empty array."
+.
+.
+.
+.
+.
+.
+.
+06:49:23|00:14:51|00:14:01.422| - Done
+06:49:23|00:14:51|00:00:00.000| Installing Web Servers
+06:49:23|00:14:51|00:00:00.016| - Machines to have Web Server role installed: 'srv3, srv4'
+06:49:23|00:14:51|00:00:00.044| - Waiting for machines to start up
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+06:53:06|00:18:34|00:03:42.892| - Waiting for Web Server role to complete installation
+.
+.
+.
+.
+.
+.
+06:55:35|00:21:03|00:06:11.899| - Done
+06:55:35|00:21:03|00:00:00.000| Starting remaining machines
+06:55:35|00:21:03|00:00:00.012| - Waiting for machines to start up...
+.
+.
+06:55:43|00:21:11|00:00:08.317| - Done
+06:55:44|00:21:12|00:00:00.004| Installing software package 'D:\LabSources\SoftwarePackages\Notepad++.exe' on machines 'dc2, srv3'
+06:56:24|00:21:52|00:00:40.311| - Installation started in background
+06:56:24|00:21:52|00:00:00.000| Installing software package 'D:\LabSources\SoftwarePackages\winrar.exe' on machines 'dc2, srv3'
+06:56:31|00:21:59|00:00:07.259| - Installation started in background
+06:56:56|00:22:24|00:22:11.058| ---------------------------------------------------------------------------
+06:56:56|00:22:24|00:22:11.086| Setting up the lab took 0 hour, 22 minutes and 24 seconds
+06:56:56|00:22:24|00:22:11.147| Lab name is 'test2' and is hosted on 'HyperV'. There are 3 machine(s) and 1 network(s) defined.
+06:56:56|00:22:24|00:22:11.171|
+06:56:56|00:22:24|00:22:11.202| ----------------------------- Network Summary -----------------------------
+06:56:56|00:22:24|00:22:11.292|
+06:56:56|00:22:24|00:22:11.316| Name AddressSpace SwitchType AdapterName IssuedIpAddresses
+06:56:56|00:22:24|00:22:11.351| ---- ------------ ---------- ----------- -----------------
+06:56:56|00:22:24|00:22:11.372| net2 10.1.0.0/24    Internal                             0
+06:56:56|00:22:24|00:22:11.395|
+06:56:56|00:22:24|00:22:11.399|
+06:56:56|00:22:24|00:22:11.419| ----------------------------- Domain Summary ------------------------------
+06:56:56|00:22:24|00:22:11.523|
+06:56:56|00:22:24|00:22:11.547| Name         Administrator Password  RootDomain
+06:56:56|00:22:24|00:22:11.575| ----         ------------- --------  ----------
+06:56:56|00:22:24|00:22:11.607| mydomain.net Administrator Somepass1
+06:56:56|00:22:24|00:22:11.647|
+06:56:57|00:22:24|00:22:11.679|
+06:56:57|00:22:24|00:22:11.707| ------------------------- Virtual Machine Summary -------------------------
+06:56:57|00:22:25|00:22:11.799|
+06:56:57|00:22:25|00:22:11.811| Name DomainName   IpAddress     Roles       OperatingSystem                                   Local Admin   Password
+06:56:57|00:22:25|00:22:11.819| ---- ----------   ---------     -----       ---------------                                   -----------   --------
+06:56:57|00:22:25|00:22:11.831| dc2  mydomain.net {10.1.0.0/24} {RootDC}    Windows Server 2016 Standard (Desktop Experience) Administrator Somepass1
+06:56:57|00:22:25|00:22:11.839| srv3 mydomain.net {10.1.0.0/24} {WebServer} Windows Server 2016 Standard (Desktop Experience) admin         admin
+06:56:57|00:22:25|00:22:11.855| srv4 mydomain.net {10.1.0.0/24} {WebServer} Windows Server 2016 Standard (Desktop Experience) admin         admin
+06:56:57|00:22:25|00:22:11.863|
+06:56:57|00:22:25|00:22:11.903|
+06:56:57|00:22:25|00:22:11.923| ---------------------------------------------------------------------------
+06:56:57|00:22:25|00:22:11.927| Please use the following cmdlets to interact with the machines:
+06:56:57|00:22:25|00:22:11.943| - Get-LabVMStatus, Get, Start, Restart, Stop, Wait, Connect, Save-LabVM and Wait-LabVMRestart (some of them provide a Wait switch)
+06:56:57|00:22:25|00:22:11.967| - Invoke-LabCommand, Enter-LabPSSession, Install-LabSoftwarePackage and Install-LabWindowsFeature (do not require credentials and
+06:56:57|00:22:25|00:22:11.983|   work the same way with Hyper-V and Azure)
+06:56:57|00:22:25|00:22:12.003| - Checkpoint-LabVM, Restore-LabVMSnapshot and Get-LabVMSnapshot (only for Hyper-V)
+06:56:57|00:22:25|00:22:12.023| - Get-LabInternetFile downloads files from the internet and places them on LabSources (locally or on Azure)
+06:56:57|00:22:25|00:22:12.031| ---------------------------------------------------------------------------
+PS>$global:?
+True

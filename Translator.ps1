@@ -23,14 +23,16 @@ While ($true) {
             [PSCustomObject]@{
                 Status = 'InProgress'
                 PID = 0
+                Start = 0
+                End = 0
             } | Export-Csv $StatusFile -NoTypeInformation
             Add-Content .\BuildRequest\Processed.txt -Value $File.BaseName
             Write-Host "`n[+] Processing Build Request [$($File.BaseName)]" -ForegroundColor Green
             $BuildRequest = Get-Content $File.fullname | ConvertFrom-Json
             # $BuildScript += "try{"
             # $BuildScript += "`$ErrorActionPreference = 'SilentlyContinue'"
-            $BuildScript += "`$Completed=`$false"
-            $BuildScript += "Start-Transcript -Path `"$($File.FullName -replace 'json','log')`""
+            # $BuildScript += "`$Completed=`$false"
+            $BuildScript += "Start-Transcript -Force -Path `"$($File.FullName -replace 'json','log')`""
             $BuildScript += "Import-Module AutomatedLab"
             
             if($BuildRequest.Rebuild){
@@ -65,7 +67,7 @@ While ($true) {
             $BuildScript += "Install-Lab"
             
             if ($BuildRequest.Software.SoftwareDeployment -and $BuildRequest.Software.SoftwareDeployServers) {
-                Foreach ($Software in $BuildRequest.Software.SoftwareDeployment) {
+                Foreach ($Software in $BuildRequest.Software.SoftwareDeployment.Where({$_ -ne 'None'})) {
                     $BuildScript += "Install-LabSoftwarePackage -ComputerName $($BuildRequest.Software.SoftwareDeployServers) -Path $($BuildRequest.LabSources)\SoftwarePackages\$($SoftwarePackageMapping[$Software]['package']) -CommandLine $($SoftwarePackageMapping[$Software]['Commandline']) -AsJob"
                     Write-Host "   [+] Adding post installation software deployment of $($SoftwarePackageMapping[$Software]['package'])" -ForegroundColor Green
                 }
@@ -80,7 +82,7 @@ While ($true) {
             }
             
             $BuildScript += "Show-LabDeploymentSummary -Detailed"
-            $BuildScript += "`$data = Import-Csv $StatusFile; `$data.Status = 'Completed';`$data| Export-csv $StatusFile"
+            $BuildScript += "`$data = Import-Csv $StatusFile; `$data.Status = 'Completed'; `$data.End = `$(Get-Date).ToString();`$data| Export-csv $StatusFile"
             # $BuildScript += "`$Completed=`$true;'Completed'|Out-File $StatusFile"
             # $BuildScript += "}"
             # $BuildScript += "catch{"
@@ -91,12 +93,18 @@ While ($true) {
             # $BuildScript += "}"
 
             $BuildScriptFileName = $File.FullName -replace 'json', 'ps1'
-            $BuildScript | Out-File $BuildScriptFileName
-            $ProcessID = Start-Process powershell.exe -ArgumentList $BuildScriptFileName -PassThru| % ID
+            $TempFileName = Join-Path $env:TEMP (Split-Path $BuildScriptFileName -Leaf)
+            $BuildScript | Out-File $TempFileName # calling temp file because 
+            $ProcessID = Start-Process powershell.exe -ArgumentList $TempFileName -PassThru| % ID
             [PSCustomObject]@{
                 Status = 'InProgress'
                 PID = $ProcessID
+                Start = $(Get-Date).ToString()
+                End = $(Get-Date).ToString()
             } | Export-Csv $StatusFile -NoTypeInformation
+
+            # cleaning the export-csv part fromthe deployment script post initializing deployment
+            $BuildScript[0..($BuildScript.count-2)] | Out-File $BuildScriptFileName
         }
         $flag = $true
     }

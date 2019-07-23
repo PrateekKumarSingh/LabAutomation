@@ -10,7 +10,8 @@ New-PolarisGetRoute -Path "/" -Scriptblock {
     $Response.SetContentType('text/html')
     $Html = Get-Content 'src/home.html' -Raw
     $Response.Send($Html)
-} 
+}
+
 New-PolarisPostRoute -Path "/result"  -Scriptblock {
 
     $Response.SetContentType('text/html')
@@ -132,12 +133,13 @@ New-PolarisGetRoute -Path "/status" -Scriptblock {
                 }
             }  
             
-            div -style "width:800px; margin:0 auto;" -Content {
+            div -style "width:1000px; margin:0 auto;" -Content {
                 Table {
                     tr -Content {
                         Th -Content "TimeStamp" -class "table-warning dashedBorder" -Style "text-align: center; font-size: 16px; color: black; max-width: 150px"
                         Th -Content "Build-ID" -class "table-warning dashedBorder" -Style "text-align: center; font-size: 16px; color: black; min-width: 380px"
                         Th -Content "Status" -class "table-warning dashedBorder" -Style "text-align: center; font-size: 16px; color: black"
+                        Th -Content "Duration" -class "table-warning dashedBorder" -Style "text-align: center; font-size: 16px; color: black;min-width: 200px"
                     }
                     tr -Content {
 
@@ -155,14 +157,14 @@ New-PolarisGetRoute -Path "/status" -Scriptblock {
                                 td -Content {
                                     a -href "$Url/build/$GUID/" -Content { $GUID }
                                 } -Class "dashedborder"
-                                if ($Status.status -eq "InProgress" -and (Get-Process -ID $Status.PID -ErrorAction SilentlyContinue)) {
+                                if ($Status.status -eq "InProgress" -and (Get-Process -ID $Status.PID -ErrorAction SilentlyContinue | Where-Object name -eq powershell)) {
                                     $Status.status = "InProgress"
                                     $Status| Export-csv $File.FullName
                                     td -Content {
                                         $Status.Status
                                     } -Style "background-color:YELLOW" -Class "dashedborder"
                                 }
-                                elseif ($Status.status -eq "InProgress" -and !(Get-Process -ID $Status.PID -ErrorAction SilentlyContinue)) {
+                                elseif ($Status.status -eq "InProgress" -and !(Get-Process -ID $Status.PID -ErrorAction SilentlyContinue | Where-Object name -eq powershell)) {
                                     $Status.status = "Failed"
                                     $Status| Export-csv $File.FullName
                                     td -Content {
@@ -187,6 +189,14 @@ New-PolarisGetRoute -Path "/status" -Scriptblock {
                                     } -Style "background-color:Gray" -Class "dashedborder"
 
                                 }
+                                if($Status.Status -eq 'InProgress'){
+                                    $Status.End = (Get-date).ToString() 
+                                    $Status | Export-Csv $file.FullName
+                                }
+                                $time = [datetime]$Status.End - [datetime]$Status.Start
+                                td -Content {
+                                    '{0} hours {1} mins {2} secs' -f $time.Hours, $time.Minutes, $time.Seconds
+                                } -Class "dashedborder"
                             }
                         }
                     } -Id "customers" -Attributes @{"border" = "1" }
@@ -198,6 +208,102 @@ New-PolarisGetRoute -Path "/status" -Scriptblock {
     $Response.Send($HTML)
 }
 
+New-PolarisGetRoute -Path "/template" -Scriptblock {
+    $HTML = html {
+        head {
+            Title "Build Status"
+            link -rel "stylesheet" -type "text/css" -href "css/style.css"
+            link -rel "stylesheet" -type "text/css" -href "css/bootstrap.min.css"
+            meta -httpequiv "refresh" -content "10"
+        }
+        body {
+            br
+            ol -class "breadcrumb" -Content {
+                li -Class "breadcrumb-item" -Content {
+                    a -href "http://localhost:8080" -Content { 'Home' }
+                }
+                li -Class "breadcrumb-item" -Content {
+                    a -href "http://localhost:8080/build/" -Content { 'Build File Server' }
+                }
+                li -Class "breadcrumb-item" -Content {
+                    'Build Status'
+                }
+            }  
+            
+            div -style "width:1000px; margin:0 auto;" -Content {
+                Table {
+                    tr -Content {
+                        Th -Content "TimeStamp" -class "table-warning dashedBorder" -Style "text-align: center; font-size: 16px; color: black; max-width: 150px"
+                        Th -Content "Build-ID" -class "table-warning dashedBorder" -Style "text-align: center; font-size: 16px; color: black; min-width: 380px"
+                        Th -Content "Status" -class "table-warning dashedBorder" -Style "text-align: center; font-size: 16px; color: black"
+                        Th -Content "Duration" -class "table-warning dashedBorder" -Style "text-align: center; font-size: 16px; color: black;min-width: 200px"
+                    }
+                    tr -Content {
+
+                        $files = Get-ChildItem .\BuildRequest\ -Filter 'status.txt' -Recurse | sort-object creationtime
+                        foreach ($file in $files) {
+                            $Status = Import-Csv $file.FullName
+                            $ParentFolder = $file.PSParentPath
+                            $GUID = $ParentFolder -split "\\" | Select-Object -Last 1
+                        
+                            tr -Content {
+                                td -Content {
+                                    $CreationTime = Get-ChildItem (Join-Path $ParentFolder "$GUID.json") | ForEach-Object CreationTime
+                                    $CreationTime.tostring('dd-MMM-yyyy hh:mm:ss tt')
+                                } -Class "dashedborder"
+                                td -Content {
+                                    a -href "$Url/build/$GUID/" -Content { $GUID }
+                                } -Class "dashedborder"
+                                if ($Status.status -eq "InProgress" -and (Get-Process -ID $Status.PID -ErrorAction SilentlyContinue | Where-Object name -eq powershell)) {
+                                    $Status.status = "InProgress"
+                                    $Status| Export-csv $File.FullName
+                                    td -Content {
+                                        $Status.Status
+                                    } -Style "background-color:YELLOW" -Class "dashedborder"
+                                }
+                                elseif ($Status.status -eq "InProgress" -and !(Get-Process -ID $Status.PID -ErrorAction SilentlyContinue | Where-Object name -eq powershell)) {
+                                    $Status.status = "Failed"
+                                    $Status| Export-csv $File.FullName
+                                    td -Content {
+                                        $Status.status
+                                    } -Style "background-color:RED" -Class "dashedborder"
+                                }
+                                elseif ($Status.status -eq "Failed") {
+                                    td -Content {
+                                        $Status.status 
+                                    } -Style "background-color:RED" -Class "dashedborder"
+                                }
+                                elseif ($Status.status -eq "Completed") {
+                                    $Status.status = "Completed"
+                                    $Status| Export-csv $File.FullName
+                                    td -Content {
+                                        $Status.status 
+                                    } -Style "background-color:GREEN" -Class "dashedborder"
+                                }
+                                else {
+                                    td -Content {
+                                        $Status.Status
+                                    } -Style "background-color:Gray" -Class "dashedborder"
+
+                                }
+                                if($Status.Status -eq 'InProgress'){
+                                    $Status.End = (Get-date).ToString() 
+                                    $Status | Export-Csv $file.FullName
+                                }
+                                $time = [datetime]$Status.End - [datetime]$Status.Start
+                                td -Content {
+                                    '{0} hours {1} mins {2} secs' -f $time.Hours, $time.Minutes, $time.Seconds
+                                } -Class "dashedborder"
+                            }
+                        }
+                    } -Id "customers" -Attributes @{"border" = "1" }
+                } -Style "text-align: center; font-size: 14px; color:black" -Class "searchable sortable"
+            }
+        }
+    }
+    $Response.SetContentType('text/html')
+    $Response.Send($HTML)
+}
 
 $Polaris = Start-Polaris -Port 8080
 Write-Host "`n[+] Web server listening on : http://localhost:$($Polaris.Port)" -ForegroundColor Yellow
