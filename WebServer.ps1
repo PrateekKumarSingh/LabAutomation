@@ -233,8 +233,8 @@ New-PolarisGetRoute -Path "/template" -Scriptblock {
             div -style "width:1000px; margin:0 auto;" -Content {
                 Table {
                     tr -Content {
-                        Th -Content "TimeStamp" -class "table-warning dashedBorder" -Style "text-align: center; font-size: 16px; color: black; max-width: 150px"
-                        Th -Content "Build-ID" -class "table-warning dashedBorder" -Style "text-align: center; font-size: 16px; color: black; min-width: 380px"
+                        Th -Content "Template Name" -class "table-warning dashedBorder" -Style "text-align: center; font-size: 16px; color: black; max-width: 150px"
+                        Th -Content "Action" -class "table-warning dashedBorder" -Style "text-align: center; font-size: 16px; color: black; min-width: 380px"
                         Th -Content "Status" -class "table-warning dashedBorder" -Style "text-align: center; font-size: 16px; color: black"
                         Th -Content "Duration" -class "table-warning dashedBorder" -Style "text-align: center; font-size: 16px; color: black;min-width: 200px"
                     }
