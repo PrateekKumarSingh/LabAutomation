@@ -5,6 +5,7 @@ $Url = "http://localhost:8080"
 
 New-PolarisStaticRoute -RoutePath "css/" -FolderPath "./src/css"
 New-PolarisStaticRoute -RoutePath "build/" -FolderPath "./BuildRequest"
+New-PolarisStaticRoute -RoutePath "templates/" -FolderPath "D:/LabSources/Templates"
 
 New-PolarisGetRoute -Path "/" -Scriptblock {
     $Response.SetContentType('text/html')
@@ -131,6 +132,9 @@ New-PolarisGetRoute -Path "/status" -Scriptblock {
                 li -Class "breadcrumb-item" -Content {
                     'Build Status'
                 }
+                li -Class "breadcrumb-item" -Content {
+                    a -href "http://localhost:8080/template" -Content { 'Templates' }
+                }
             }  
             
             div -style "width:1000px; margin:0 auto;" -Content {
@@ -214,7 +218,7 @@ New-PolarisGetRoute -Path "/template" -Scriptblock {
             Title "Build Status"
             link -rel "stylesheet" -type "text/css" -href "css/style.css"
             link -rel "stylesheet" -type "text/css" -href "css/bootstrap.min.css"
-            meta -httpequiv "refresh" -content "10"
+            # meta -httpequiv "refresh" -content "10"
         }
         body {
             br
@@ -226,80 +230,62 @@ New-PolarisGetRoute -Path "/template" -Scriptblock {
                     a -href "http://localhost:8080/build/" -Content { 'Build File Server' }
                 }
                 li -Class "breadcrumb-item" -Content {
-                    'Build Status'
+                    a -href "http://localhost:8080/status" -Content { 'Build Status' }
+                }
+                li -Class "breadcrumb-item" -Content {
+                    'Templates'
                 }
             }  
             
             div -style "width:1000px; margin:0 auto;" -Content {
-                Table {
-                    tr -Content {
-                        Th -Content "Template Name" -class "table-warning dashedBorder" -Style "text-align: center; font-size: 16px; color: black; max-width: 150px"
-                        Th -Content "Action" -class "table-warning dashedBorder" -Style "text-align: center; font-size: 16px; color: black; min-width: 380px"
-                        Th -Content "Status" -class "table-warning dashedBorder" -Style "text-align: center; font-size: 16px; color: black"
-                        Th -Content "Duration" -class "table-warning dashedBorder" -Style "text-align: center; font-size: 16px; color: black;min-width: 200px"
-                    }
-                    tr -Content {
-
-                        $files = Get-ChildItem .\BuildRequest\ -Filter 'status.txt' -Recurse | sort-object creationtime
-                        foreach ($file in $files) {
-                            $Status = Import-Csv $file.FullName
-                            $ParentFolder = $file.PSParentPath
-                            $GUID = $ParentFolder -split "\\" | Select-Object -Last 1
-                        
-                            tr -Content {
-                                td -Content {
-                                    $CreationTime = Get-ChildItem (Join-Path $ParentFolder "$GUID.json") | ForEach-Object CreationTime
-                                    $CreationTime.tostring('dd-MMM-yyyy hh:mm:ss tt')
-                                } -Class "dashedborder"
-                                td -Content {
-                                    a -href "$Url/build/$GUID/" -Content { $GUID }
-                                } -Class "dashedborder"
-                                if ($Status.status -eq "InProgress" -and (Get-Process -ID $Status.PID -ErrorAction SilentlyContinue | Where-Object name -eq powershell)) {
-                                    $Status.status = "InProgress"
-                                    $Status| Export-csv $File.FullName
-                                    td -Content {
-                                        $Status.Status
-                                    } -Style "background-color:YELLOW" -Class "dashedborder"
-                                }
-                                elseif ($Status.status -eq "InProgress" -and !(Get-Process -ID $Status.PID -ErrorAction SilentlyContinue | Where-Object name -eq powershell)) {
-                                    $Status.status = "Failed"
-                                    $Status| Export-csv $File.FullName
-                                    td -Content {
-                                        $Status.status
-                                    } -Style "background-color:RED" -Class "dashedborder"
-                                }
-                                elseif ($Status.status -eq "Failed") {
-                                    td -Content {
-                                        $Status.status 
-                                    } -Style "background-color:RED" -Class "dashedborder"
-                                }
-                                elseif ($Status.status -eq "Completed") {
-                                    $Status.status = "Completed"
-                                    $Status| Export-csv $File.FullName
-                                    td -Content {
-                                        $Status.status 
-                                    } -Style "background-color:GREEN" -Class "dashedborder"
-                                }
-                                else {
-                                    td -Content {
-                                        $Status.Status
-                                    } -Style "background-color:Gray" -Class "dashedborder"
-
-                                }
-                                if($Status.Status -eq 'InProgress'){
-                                    $Status.End = (Get-date).ToString() 
-                                    $Status | Export-Csv $file.FullName
-                                }
-                                $time = [datetime]$Status.End - [datetime]$Status.Start
-                                td -Content {
-                                    '{0} hours {1} mins {2} secs' -f $time.Hours, $time.Minutes, $time.Seconds
-                                } -Class "dashedborder"
-                            }
+                # Form -action "/template" -method "POST" -Content {
+                    Table {
+                        tr -Content {
+                            Th -Content "Template Name" -class "table-warning dashedBorder" -Style "text-align: center; font-size: 16px; color: black; max-width: 150px"
+                            Th -Content "Action" -class "table-warning dashedBorder" -Style "text-align: center; font-size: 16px; color: black; min-width: 0px"
                         }
-                    } -Id "customers" -Attributes @{"border" = "1" }
-                } -Style "text-align: center; font-size: 14px; color:black" -Class "searchable sortable"
-            }
+                        tr -Content {
+    
+                            $files = Get-ChildItem D:\LabSources\Templates\ -Filter '*.ps1' | Sort Name
+                            foreach ($file in $files) {
+                                $Name = $file.Name -replace $file.Extension,''
+                            
+                                
+                                tr -Content {
+                                    td -Content {
+                                        # $Name
+                                        a -href "$Url/templates/$([URI]::EscapeDataString($file.name))" -Content { $name }
+                                    } -Class "dashedborder" -Style "text-align: Left"
+
+                                    td -Content { 
+                                    #    button -Content {
+                                    #        'Deploy'
+                                    #    } -Style "background-color: #4CAF50; foreground-color: #FFFFFF"
+                                    '<form action="/template" method="GET">'
+                                    input -type 'Hidden' -name 'File' -value $file.FullName
+                                    '<button type="Submit" style="background-color: #4CAF50; foreground-color: #FFFFFF">Deploy</button>'
+                                    '</form>'
+                                    # '<button onclick="exec("powershell.exe",["D:\LabSources\Templates\BigLab-2012R2-EX-SQL-ORCH-VS-OFF.ps1"]"], function (err, stdout, stderr) {console.log(err);console.log(stdout);console.log(stderr);});" style="background-color: #4CAF50; foreground-color: #FFFFFF">Deploy</button>'
+
+                                    # @'<div class="custom-control custom-switch">
+                                    # <input type="checkbox" class="custom-control-input" id="customSwitch2"
+                                    #     name="rebuild" value="$True">
+                                    # <label class="custom-control-label" for="customSwitch2"></label>
+                                    # </div>
+                                    # @'
+                                    } -Class "dashedborder"
+                                }
+                            }
+                        } -Id "customers" -Attributes @{"border" = "1" }
+                    } -Style "text-align: center; font-size: 14px; color:black" -Class "searchable sortable"
+                }
         }
+    }
+    $Body = [System.Web.HttpUtility]::UrlDecode($Request.URL)
+    $Userinput = $Body -split '\?'
+    $File = $UserInput -match "File=" -replace "File=", ""
+    if($file){
+        Start-Process powershell.exe -ArgumentList $File
     }
     $Response.SetContentType('text/html')
     $Response.Send($HTML)

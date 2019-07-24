@@ -2,7 +2,7 @@
 
 ## Idea 
 
-Treat your Servers like Cattle'S, **NOT** like Pets. That means:
+Treat your Servers like Cattle's, **NOT** like Pets. That means:
 * No loving and caring
 * Replaceable ASAP
 
